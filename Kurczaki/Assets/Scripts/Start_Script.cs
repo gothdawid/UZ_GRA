@@ -8,7 +8,7 @@ public class Start_Script : MonoBehaviour
     public void loadGame()
     {
         SceneManager.LoadScene(1);
-
+        SceneManager.UnloadScene(0);
 
     }
 
