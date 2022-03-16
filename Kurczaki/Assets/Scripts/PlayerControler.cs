@@ -28,6 +28,10 @@ public class PlayerControler : MonoBehaviour
         var game_k_controler = Keyboard.current;
         var game_m_controler = Mouse.current;
 
+        var pos3 = game_m_controler.position.ReadValue();
+
+
+
         if (game_k_controler == null) return;
         if (game_k_controler.leftArrowKey.wasPressedThisFrame)
         {
