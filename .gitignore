@@ -10,6 +10,8 @@ Kurczaki/[Bb]uild/
 Kurczaki/[Bb]uilds/
 Kurczaki/[Ll]ogs/
 /Kurczaki/[Ll]ogs/
+[Ll]ogs/
+/[Ll]ogs/
 Kurczaki/[Mm]emoryCaptures/
 
 # Asset meta data should only be ignored when the corresponding asset is also ignored

@@ -20,7 +20,7 @@ public class PlayerControler : MonoBehaviour
     void Update()
     {
         Vector2 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        transform.position = new Vector2(pos.x, pos.y);
+        transform.position = new Vector3(pos.x, pos.y, -10f);
     }
 
     void FixedUpdate()
