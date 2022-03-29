@@ -5,8 +5,6 @@ using UnityEngine.InputSystem;
 
 public class PlayerControler : MonoBehaviour
 {
-    // Start is called before the first frame update
-
 
     void Start()
     {
@@ -16,35 +14,26 @@ public class PlayerControler : MonoBehaviour
 
 
 
+    public GameObject bullet;
+    public Transform shootPoint;
 
-    // Update is called once per frame
     void Update()
     {
         Vector2 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         transform.position = new Vector2(pos.x, pos.y);
 
 
-
-        var game_k_controler = Keyboard.current;
-        var game_m_controler = Mouse.current;
-
-        var pos3 = game_m_controler.position.ReadValue();
-
-
-
-        if (game_k_controler == null) return;
-        if (game_k_controler.leftArrowKey.wasPressedThisFrame)
+        if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            Debug.Log("Left");
+            var newBullet = Instantiate(bullet) as GameObject;
+            newBullet.transform.position = shootPoint.position;
         }
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetKeyDown(KeyCode.Mouse1))
         {
-            Debug.Log("Tfiu!");
+            Debug.Log("1");
         }
-        if (Input.GetMouseButtonDown(1))
-        {
-            Debug.Log("Ka Bum!");
-        }
+
+
     }
 }
