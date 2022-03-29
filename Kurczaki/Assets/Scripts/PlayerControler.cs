@@ -21,9 +21,11 @@ public class PlayerControler : MonoBehaviour
     {
         Vector2 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         transform.position = new Vector2(pos.x, pos.y);
+    }
 
-
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+    void FixedUpdate()
+    {
+        if (Input.GetKey(KeyCode.Mouse0))
         {
             var newBullet = Instantiate(bullet) as GameObject;
             newBullet.transform.position = shootPoint.position;
@@ -33,7 +35,5 @@ public class PlayerControler : MonoBehaviour
         {
             Debug.Log("1");
         }
-
-
     }
 }
