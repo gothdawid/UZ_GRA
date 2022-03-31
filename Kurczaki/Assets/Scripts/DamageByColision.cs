@@ -29,13 +29,16 @@ public class DamageByColision : MonoBehaviour
 
     void Update()
     {
-        invulnTime -= Time.deltaTime;
-
-
-        if(invulnTime <= 0)
+        if(invulnTime > 0)
         {
-            gameObject.layer = correctLayer;
+            invulnTime -= Time.deltaTime;
+
+            if (invulnTime <= 0)
+            {
+                gameObject.layer = correctLayer;
+            }
         }
+
 
         if(health <= 0)
         {
