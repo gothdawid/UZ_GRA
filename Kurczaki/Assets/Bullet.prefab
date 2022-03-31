@@ -145,4 +145,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigibody: {fileID: 2436396346303608907}
-  Bulletspeed: 20000
+  Bulletspeed: 25000
