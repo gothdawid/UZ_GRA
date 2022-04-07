@@ -3,60 +3,78 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
+    
+
 public class SettingsMenu : MonoBehaviour
 {
-    public Slider resulutionSlider;
+    public Dropdown resulutionDropdown;
+    public GameObject SettingsDialog;
 
-    public Text restLabel;
+    public Text MusicLabel, FXLabel, QualityLabel;
+    Resolution[] all_resolutions;
+    
 
-    Resolution[] resolutions;
+
 
     List<string> options = new List<string>();
-
+    GameObject MainMenu;
     void Start()
     {
-        resolutions = Screen.resolutions;
+        MainMenu = GameObject.FindGameObjectWithTag("MainMenu");
+        MainMenu.SetActive(false);
 
+        all_resolutions = Screen.resolutions;
 
         int currentResoulotionIndex = 0;
+        resulutionDropdown.ClearOptions();
 
         int i = 0;
-        for (i = 0; i < resolutions.Length; i++)
+        for (i = 0; i < all_resolutions.Length; i++)
         {
-            string option = resolutions[i].width + "x" + resolutions[i].height;
-            options.Add(option);
 
-            if(resolutions[i].width == Screen.currentResolution.width &&
-                resolutions[i].height == Screen.currentResolution.height)
+            string option = all_resolutions[i].width + "x" + all_resolutions[i].height + " @ " + all_resolutions[i].refreshRate + "Hz";
+
+            if (!options.Contains(option))
+            {
+                options.Add(option);
+            }
+
+            if(all_resolutions[i].width == Screen.currentResolution.width &&
+                all_resolutions[i].height == Screen.currentResolution.height)
             {
                 currentResoulotionIndex = i;
             }
-
+  
         }
 
-        resulutionSlider.value = currentResoulotionIndex;
-        restLabel.text = options[currentResoulotionIndex];
-        resulutionSlider.maxValue = i;
+        resulutionDropdown.AddOptions(options);
+        resulutionDropdown.value = currentResoulotionIndex;
     }
 
-    public void SetVolume (float volume)
+    public void SetFXVolume (float volume)
     {
-        Debug.Log(volume);
+        FXLabel.text = (volume ).ToString()+"%";
+    }
+    public void SetMusicVolume(float volume)
+    {
+        MusicLabel.text = (volume).ToString()+"%";
     }
 
     public void SetGraphic(float qualityIndex)
     {
         int level = (int)qualityIndex;
-
         QualitySettings.SetQualityLevel(level);
+        QualityLabel.text = QualitySettings.names[level];
+
     }
 
-    public void SetRes(float index)
+    public void SetRes(int index)
     {
 
-        Resolution resolution = resolutions[(int)index];
+        Resolution resolution = all_resolutions[(int)index];
         Screen.SetResolution(resolution.width,resolution.height, Screen.fullScreen);
-        restLabel.text = options[(int)index];
+        //resoulutionLabel.text = options[(int)index];
 
     }
 
@@ -67,6 +85,8 @@ public class SettingsMenu : MonoBehaviour
 
     public void ExitSettings()
     {
-        Debug.Log("exit");
+        Destroy(SettingsDialog);
+
+        MainMenu.SetActive(true);
     }
 }
