@@ -11,7 +11,7 @@ public class SettingsMenu : MonoBehaviour
     public Dropdown resulutionDropdown;
     public GameObject SettingsDialog;
 
-    public Text MusicLabel, FXLabel, QualityLabel;
+    public Text MusicLabel, FXLabel, qualityLabel;
     Resolution[] all_resolutions;
     
 
@@ -30,15 +30,14 @@ public class SettingsMenu : MonoBehaviour
         resulutionDropdown.ClearOptions();
 
         int i = 0;
+
         for (i = 0; i < all_resolutions.Length; i++)
         {
 
             string option = all_resolutions[i].width + "x" + all_resolutions[i].height + " @ " + all_resolutions[i].refreshRate + "Hz";
 
-            if (!options.Contains(option))
-            {
-                options.Add(option);
-            }
+            options.Add(option);
+            
 
             if(all_resolutions[i].width == Screen.currentResolution.width &&
                 all_resolutions[i].height == Screen.currentResolution.height)
@@ -65,16 +64,13 @@ public class SettingsMenu : MonoBehaviour
     {
         int level = (int)qualityIndex;
         QualitySettings.SetQualityLevel(level);
-        QualityLabel.text = QualitySettings.names[level];
-
+        qualityLabel.text = QualitySettings.names[level];
     }
 
     public void SetRes(int index)
     {
-
         Resolution resolution = all_resolutions[(int)index];
         Screen.SetResolution(resolution.width,resolution.height, Screen.fullScreen);
-        //resoulutionLabel.text = options[(int)index];
 
     }
 
