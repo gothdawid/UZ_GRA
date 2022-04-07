@@ -1040,6 +1040,7 @@ MonoBehaviour:
   MusicLabel: {fileID: 6157864720137215527}
   FXLabel: {fileID: 3074694489292898364}
   qualityLabel: {fileID: 4181369522725405558}
+  audioMixer: {fileID: 24100000, guid: d67ff7ffaa7e3f1409dab84cb55dc8e3, type: 2}
 --- !u!1 &2186039199460666029
 GameObject:
   m_ObjectHideFlags: 0
@@ -2745,10 +2746,10 @@ MonoBehaviour:
   m_FillRect: {fileID: 7774912361041335581}
   m_HandleRect: {fileID: 2150546724371820045}
   m_Direction: 0
-  m_MinValue: 0
-  m_MaxValue: 100
+  m_MinValue: -80
+  m_MaxValue: 20
   m_WholeNumbers: 1
-  m_Value: 50
+  m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -3043,10 +3044,10 @@ MonoBehaviour:
   m_FillRect: {fileID: 811326436942386886}
   m_HandleRect: {fileID: 3884744370878842741}
   m_Direction: 0
-  m_MinValue: 0
-  m_MaxValue: 100
+  m_MinValue: -80
+  m_MaxValue: 20
   m_WholeNumbers: 1
-  m_Value: 50
+  m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:

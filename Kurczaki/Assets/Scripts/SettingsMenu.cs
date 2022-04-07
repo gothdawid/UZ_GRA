@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.UI;
 
 
@@ -15,7 +16,7 @@ public class SettingsMenu : MonoBehaviour
     Resolution[] all_resolutions;
     int refreshRate = -1;
 
-
+    public AudioMixer audioMixer;
 
     List<string> options = new List<string>();
     GameObject MainMenu;
@@ -55,10 +56,13 @@ public class SettingsMenu : MonoBehaviour
     public void SetFXVolume (float volume)
     {
         FXLabel.text = (volume ).ToString()+"%";
+        audioMixer.SetFloat("FXGain", volume);
+
     }
     public void SetMusicVolume(float volume)
     {
         MusicLabel.text = (volume).ToString()+"%";
+        audioMixer.SetFloat("MusicGain", volume);
     }
 
     public void SetGraphic(float qualityIndex)
