@@ -13,7 +13,7 @@ public class SettingsMenu : MonoBehaviour
 
     public Text MusicLabel, FXLabel, qualityLabel;
     Resolution[] all_resolutions;
-    
+    int refreshRate = -1;
 
 
 
@@ -35,8 +35,10 @@ public class SettingsMenu : MonoBehaviour
         {
 
             string option = all_resolutions[i].width + "x" + all_resolutions[i].height + " @ " + all_resolutions[i].refreshRate + "Hz";
-
-            options.Add(option);
+            if (all_resolutions[i].refreshRate == 30 || all_resolutions[i].refreshRate == 60 || all_resolutions[i].refreshRate >= 120)
+            {
+                options.Add(option);
+            }
             
 
             if(all_resolutions[i].width == Screen.currentResolution.width &&
@@ -44,7 +46,6 @@ public class SettingsMenu : MonoBehaviour
             {
                 currentResoulotionIndex = i;
             }
-  
         }
 
         resulutionDropdown.AddOptions(options);
@@ -69,9 +70,35 @@ public class SettingsMenu : MonoBehaviour
 
     public void SetRes(int index)
     {
-        Resolution resolution = all_resolutions[(int)index];
-        Screen.SetResolution(resolution.width,resolution.height, Screen.fullScreen);
+        string[] _tmp = resulutionDropdown.options[index].text.Split(' ');
+        string[] _tmp2 = _tmp[0].Split('x');
 
+        string _tmp3 = _tmp[2].Replace("Hz", "");
+
+        int height = System.Int32.Parse(_tmp2[1]), width = System.Int32.Parse(_tmp2[0]);
+        refreshRate = System.Int32.Parse(_tmp3);
+
+        Screen.SetResolution(width, height, Screen.fullScreen, refreshRate);
+
+
+        Application.targetFrameRate = refreshRate;
+
+        //Debug.LogError(width.ToString() + "x" + height.ToString() + "@" + refreshRate.ToString());
+        //Debug.LogError(Screen.currentResolution.width + "x" + Screen.currentResolution.height + "@" + Screen.currentResolution.refreshRate);
+    }
+
+    public void SetVSync(bool a)
+    {
+        if (a)
+        {
+            QualitySettings.vSyncCount = 1;
+            Application.targetFrameRate = refreshRate;
+        }
+        else
+        {
+            QualitySettings.vSyncCount = 0;
+            Application.targetFrameRate = -1;
+        }
     }
 
     public void SetFullScren(bool a)
