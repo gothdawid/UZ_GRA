@@ -9,7 +9,11 @@ public class MenuScript : MonoBehaviour
     public GameObject settingsDialog;
     public AudioMixer audiomixer;
 
+    private void Start()
+    {
+        Application.targetFrameRate = Screen.currentResolution.refreshRate;
 
+    }
     public void newGame()
     {
 
