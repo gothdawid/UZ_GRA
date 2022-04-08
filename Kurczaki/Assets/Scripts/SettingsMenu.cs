@@ -110,6 +110,7 @@ public class SettingsMenu : MonoBehaviour
         qualityLabel.text = QualitySettings.names[level];
     }
 
+    bool vsync = true;
     public void SetRes(int index)
     {
         string[] _tmp = resulutionDropdown.options[index].text.Split(' ');
@@ -121,10 +122,7 @@ public class SettingsMenu : MonoBehaviour
         refreshRate = System.Int32.Parse(_tmp3);
 
         Screen.SetResolution(width, height, Screen.fullScreen, refreshRate);
-
-        if(QualitySettings.vSyncCount == 0) Application.targetFrameRate = -1;
-        else Application.targetFrameRate = refreshRate;
-        
+        if(vsync) Application.targetFrameRate = refreshRate;
 
         Debug.LogError(width.ToString() + "x" + height.ToString() + "@" + refreshRate.ToString());
         Debug.LogError(Screen.width + "x" + Screen.height + "@" + refreshRate);
@@ -133,12 +131,14 @@ public class SettingsMenu : MonoBehaviour
     public void SetVSync(bool a)
     {
         if (a)
-        { 
-            QualitySettings.vSyncCount = 1;
+        {
+            vsync = true;
             Application.targetFrameRate = refreshRate;
+            //Debug.LogError(refreshRate + " " + Application.targetFrameRate);
         }
         else
         {
+            vsync = false;
             QualitySettings.vSyncCount = 0;
             Application.targetFrameRate = -1;
         }

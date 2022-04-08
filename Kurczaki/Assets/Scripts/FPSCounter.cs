@@ -15,7 +15,7 @@ public class FPSCounter : MonoBehaviour
     public void GetFPS()
     {
         fps = (int)(1f / Time.unscaledDeltaTime);
-        fpsText.text = fps + " fps";
+        fpsText.text = fps + " FPS";
     }
 
 }
