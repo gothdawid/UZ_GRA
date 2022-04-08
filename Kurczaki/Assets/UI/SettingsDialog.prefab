@@ -109,7 +109,7 @@ RectTransform:
   - {fileID: 161530871995419968}
   - {fileID: 3626094808384361526}
   m_Father: {fileID: 2186039198966622471}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -288,7 +288,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  m_IsOn: 1
+  m_IsOn: 0
 --- !u!1 &1986045771192311010
 GameObject:
   m_ObjectHideFlags: 0
@@ -367,7 +367,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 50%
+  m_Text: 100%
 --- !u!1 &2008942243331524018
 GameObject:
   m_ObjectHideFlags: 0
@@ -473,7 +473,7 @@ RectTransform:
   - {fileID: 8398018010299315769}
   - {fileID: 8174308303511118273}
   m_Father: {fileID: 2186039198966622471}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -871,11 +871,11 @@ RectTransform:
   - {fileID: 2186039198843970099}
   - {fileID: 7490987232673029781}
   - {fileID: 2411182462481571938}
+  - {fileID: 41905023193523681}
   - {fileID: 6959474552218602870}
   - {fileID: 7491893485984403651}
   - {fileID: 9208688285357671801}
   - {fileID: 5402479390210112584}
-  - {fileID: 41905023193523681}
   m_Father: {fileID: 2186039199115513655}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1037,9 +1037,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   resulutionDropdown: {fileID: 1557556491495711176}
   SettingsDialog: {fileID: 2186039199115513652}
+  musicSlider: {fileID: 5658698049636529964}
+  SFXSlider: {fileID: 4315930747343888827}
+  qualitySlider: {fileID: 7527305040669666234}
   MusicLabel: {fileID: 6157864720137215527}
   FXLabel: {fileID: 3074694489292898364}
   qualityLabel: {fileID: 4181369522725405558}
+  VsyncToggle: {fileID: 2406612206217324406}
+  fullscreenToggle: {fileID: 1449645830923415418}
   audioMixer: {fileID: 24100000, guid: d67ff7ffaa7e3f1409dab84cb55dc8e3, type: 2}
 --- !u!1 &2186039199460666029
 GameObject:
@@ -2208,18 +2213,18 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4736845498508509487}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5016581178131922322}
   - {fileID: 1602019786655227896}
   m_Father: {fileID: 2186039198966622471}
-  m_RootOrder: 8
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 89.3, y: 60}
+  m_AnchoredPosition: {x: 89.3, y: 59.999996}
   m_SizeDelta: {x: 110, y: 21}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2406612206217324406
@@ -2747,7 +2752,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 2150546724371820045}
   m_Direction: 0
   m_MinValue: -80
-  m_MaxValue: 20
+  m_MaxValue: 0
   m_WholeNumbers: 1
   m_Value: 0
   m_OnValueChanged:
@@ -3045,7 +3050,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 3884744370878842741}
   m_Direction: 0
   m_MinValue: -80
-  m_MaxValue: 20
+  m_MaxValue: 0
   m_WholeNumbers: 1
   m_Value: 0
   m_OnValueChanged:
@@ -3374,7 +3379,7 @@ RectTransform:
   - {fileID: 1142113767729369279}
   - {fileID: 7985212336434949709}
   m_Father: {fileID: 2186039198966622471}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3459,7 +3464,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 50%
+  m_Text: 100%
 --- !u!1 &7813988488416856132
 GameObject:
   m_ObjectHideFlags: 0
@@ -3791,7 +3796,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2186039198966622471}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}

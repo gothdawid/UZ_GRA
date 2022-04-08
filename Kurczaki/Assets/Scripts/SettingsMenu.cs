@@ -11,8 +11,9 @@ public class SettingsMenu : MonoBehaviour
 {
     public Dropdown resulutionDropdown;
     public GameObject SettingsDialog;
-
+    public Slider musicSlider, SFXSlider, qualitySlider;
     public Text MusicLabel, FXLabel, qualityLabel;
+    public Toggle VsyncToggle, fullscreenToggle;
     Resolution[] all_resolutions;
     int refreshRate = -1;
 
@@ -30,38 +31,75 @@ public class SettingsMenu : MonoBehaviour
         int currentResoulotionIndex = 0;
         resulutionDropdown.ClearOptions();
 
-        int i = 0;
+       
 
-        for (i = 0; i < all_resolutions.Length; i++)
+        for (int i = 0, j = 0; i < all_resolutions.Length; i++)
         {
 
             string option = all_resolutions[i].width + "x" + all_resolutions[i].height + " @ " + all_resolutions[i].refreshRate + "Hz";
             if (all_resolutions[i].refreshRate == 30 || all_resolutions[i].refreshRate == 60 || all_resolutions[i].refreshRate == 75 || all_resolutions[i].refreshRate >= 120)
             {
                 options.Add(option);
+                j++;
             }
             
 
-            if(all_resolutions[i].width == Screen.currentResolution.width &&
-                all_resolutions[i].height == Screen.currentResolution.height)
+            if(all_resolutions[i].width == Screen.width &&
+                all_resolutions[i].height == Screen.height)
             {
-                currentResoulotionIndex = i;
+                currentResoulotionIndex = j-1;
             }
+            
         }
 
         resulutionDropdown.AddOptions(options);
         resulutionDropdown.value = currentResoulotionIndex;
+
+        /// SET GAINS ON LABELS
+        float volume;
+        audioMixer.GetFloat("FXGain", out volume);
+        SFXSlider.value = (int)volume;
+        FXLabel.text = ((volume + 80f) / 80f * 100).ToString() + "%";
+
+        audioMixer.GetFloat("FXGain", out volume);
+        musicSlider.value = (int)volume;
+        MusicLabel.text = ((volume + 80f) / 80f * 100).ToString() + "%";
+
+        /// SET VALUE TO GRAPHIC OPTION
+        qualitySlider.value = QualitySettings.GetQualityLevel();
+        qualityLabel.text = QualitySettings.names[QualitySettings.GetQualityLevel()];
+
+        /// SET TOGGLE VSYNC
+        if (QualitySettings.vSyncCount != 0)
+        {
+            QualitySettings.vSyncCount = 1;
+            Application.targetFrameRate = refreshRate;
+            VsyncToggle.isOn = true;
+        }
+        else
+        {
+            QualitySettings.vSyncCount = 0;
+            Application.targetFrameRate = -1;
+            VsyncToggle.isOn = false;
+        }
+
+        //SET FULLSCREEN TOGGLE
+
+        if(Screen.fullScreen) fullscreenToggle.isOn = true;
+        else fullscreenToggle.isOn = false;
+
     }
 
     public void SetFXVolume (float volume)
     {
-        FXLabel.text = (volume ).ToString()+"%";
+        FXLabel.text = ((volume + 80f) / 80f * 100).ToString() + "%";
         audioMixer.SetFloat("FXGain", volume);
 
     }
+
     public void SetMusicVolume(float volume)
     {
-        MusicLabel.text = (volume).ToString()+"%";
+        MusicLabel.text = ((volume + 80f) / 80f * 100).ToString() + "%";
         audioMixer.SetFloat("MusicGain", volume);
     }
 
@@ -84,17 +122,18 @@ public class SettingsMenu : MonoBehaviour
 
         Screen.SetResolution(width, height, Screen.fullScreen, refreshRate);
 
+        if(QualitySettings.vSyncCount == 0) Application.targetFrameRate = -1;
+        else Application.targetFrameRate = refreshRate;
+        
 
-        Application.targetFrameRate = refreshRate;
-
-        //Debug.LogError(width.ToString() + "x" + height.ToString() + "@" + refreshRate.ToString());
-        //Debug.LogError(Screen.currentResolution.width + "x" + Screen.currentResolution.height + "@" + Screen.currentResolution.refreshRate);
+        Debug.LogError(width.ToString() + "x" + height.ToString() + "@" + refreshRate.ToString());
+        Debug.LogError(Screen.width + "x" + Screen.height + "@" + refreshRate);
     }
 
     public void SetVSync(bool a)
     {
         if (a)
-        {
+        { 
             QualitySettings.vSyncCount = 1;
             Application.targetFrameRate = refreshRate;
         }
