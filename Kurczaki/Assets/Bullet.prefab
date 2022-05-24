@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 7075425180109301736}
   - component: {fileID: 498750202501196826}
   - component: {fileID: 4249425908888308509}
-  m_Layer: 6
+  m_Layer: 9
   m_Name: Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -175,7 +175,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 1
-  invulnTime: 0
 --- !u!82 &4249425908888308509
 AudioSource:
   m_ObjectHideFlags: 0

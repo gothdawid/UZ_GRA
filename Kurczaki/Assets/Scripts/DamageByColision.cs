@@ -6,39 +6,32 @@ public class DamageByColision : MonoBehaviour
 {
     //public float damage = 1;
     public int health = 1;
-    public float invulnTime = 0f;
+    GameObject gameManager;
+    GameManager gm;
 
     int correctLayer;
 
     private void Start()
     {
-        correctLayer = gameObject.layer;
+        gameManager = GameObject.Find("GameManager");
+        gm = (GameManager)gameManager.GetComponent(typeof(GameManager));
     }
 
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (invulnTime <= 0)
+        if(gameObject.layer == 6)
+        {
+            gm.takeDMG(gameObject);
+        }
+        else
         {
             health--;
-            invulnTime = 2f;
-
-            gameObject.layer = 8;
         }
     }
 
     void Update()
     {
-        if(invulnTime > 0)
-        {
-            invulnTime -= Time.deltaTime;
-
-            if (invulnTime <= 0)
-            {
-                gameObject.layer = correctLayer;
-            }
-        }
-
 
         if(health <= 0)
         {

@@ -134,7 +134,6 @@ public class SettingsMenu : MonoBehaviour
         {
             vsync = true;
             Application.targetFrameRate = refreshRate;
-            //Debug.LogError(refreshRate + " " + Application.targetFrameRate);
         }
         else
         {
