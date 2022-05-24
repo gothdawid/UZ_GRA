@@ -10,12 +10,13 @@ public class PointsOnKill : MonoBehaviour
 
     private void Start()
     {
-        gameManager = GameObject.Find("GameManager");
-        gm = (GameManager)gameManager.GetComponent(typeof(GameManager));
+
     }
 
     void OnDestroy()
     {
+        gameManager = GameObject.Find("GameManager");
+        gm = (GameManager)gameManager.GetComponent(typeof(GameManager));
         gm.addPoints(pointsForKill);
     }
 }

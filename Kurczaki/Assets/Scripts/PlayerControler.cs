@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class PlayerControler : MonoBehaviour
 {
@@ -9,9 +11,16 @@ public class PlayerControler : MonoBehaviour
     public float fire2Delay = 25;
     float cooldownTimer = 0;
     float cooldownTimer2 = 0;
+    GameObject gObj;
+    Image WeaponImage;
+
 
     void Start()
     {
+        gObj = GameObject.Find("WeaponImage");
+        WeaponImage = (Image)gObj.GetComponent(typeof(Image));
+
+
         Cursor.lockState = CursorLockMode.Confined; 
         Cursor.visible = false;
     }
@@ -20,7 +29,7 @@ public class PlayerControler : MonoBehaviour
 
     public GameObject bullet;
     public Transform shootPoint;
-
+    float color = 255;
     void Update()
     {
         Vector2 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -36,11 +45,14 @@ public class PlayerControler : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Mouse1) && cooldownTimer2 <= 0)
         {
-            Debug.Log("1");
+            Debug.Log("2");
             cooldownTimer2 = fire2Delay;
         }
 
-        cooldownTimer -= Time.deltaTime;
-        cooldownTimer2 -= Time.deltaTime;
+        color = (float)Math.Ceiling(155f - (cooldownTimer / fireDelay * 255f));
+        Debug.Log(color);
+        WeaponImage.color = new Color(255, color, color);
+        if(cooldownTimer >= 0) cooldownTimer -= Time.deltaTime;
+        if(cooldownTimer2 >= 0) cooldownTimer2 -= Time.deltaTime;
     }
 }
