@@ -6,7 +6,7 @@ public class DamageByColision : MonoBehaviour
 {
     //public float damage = 1;
     public int health = 1;
-    GameObject gameManager;
+    GameObject gameManager, explosion;
     GameManager gm;
 
     int correctLayer;
@@ -22,6 +22,7 @@ public class DamageByColision : MonoBehaviour
     {
         if(gameObject.layer == 6)
         {
+            Instantiate(explosion, transform.position, transform.rotation);
             gm.takeDMG(gameObject);
         }
         else

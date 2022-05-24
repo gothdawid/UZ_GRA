@@ -49,8 +49,9 @@ public class PlayerControler : MonoBehaviour
             cooldownTimer2 = fire2Delay;
         }
 
-        color = (float)Math.Ceiling(155f - (cooldownTimer / fireDelay * 255f));
+        color = (float)Math.Ceiling(100f - (cooldownTimer / fireDelay * 200f));
         Debug.Log(color);
+
         WeaponImage.color = new Color(255, color, color);
         if(cooldownTimer >= 0) cooldownTimer -= Time.deltaTime;
         if(cooldownTimer2 >= 0) cooldownTimer2 -= Time.deltaTime;
