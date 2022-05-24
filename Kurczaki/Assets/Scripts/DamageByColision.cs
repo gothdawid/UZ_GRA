@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class DamageByColision : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class DamageByColision : MonoBehaviour
     {
         gameManager = GameObject.Find("GameManager");
         gm = (GameManager)gameManager.GetComponent(typeof(GameManager));
+
     }
 
 
@@ -23,7 +25,7 @@ public class DamageByColision : MonoBehaviour
     {
         if(gameObject.layer == 6)
         {
-            Instantiate(PlayerExplosion, transform.position, transform.rotation);
+            if (PlayerExplosion != null) Instantiate(PlayerExplosion, transform.position, transform.rotation);
             gm.takeDMG(gameObject);
         }
         else
@@ -34,17 +36,14 @@ public class DamageByColision : MonoBehaviour
 
     void Update()
     {
-
         if(health <= 0)
         {
-            Instantiate(EnemyExplosion, transform.position, transform.rotation);
-            Die();
+            if(EnemyExplosion != null) Instantiate(EnemyExplosion, transform.position, transform.rotation);
+
+            Destroy(gameObject);
+            this.health = 1;
         }
     }
 
-    void Die()
-    {
-        Destroy(gameObject);
-    }
 
 }

@@ -5,7 +5,6 @@ using UnityEngine;
 public class PointsOnKill : MonoBehaviour
 {
     public int pointsForKill = 5;
-    GameObject gameManager;
     GameManager gm;
 
     private void Start()
@@ -15,8 +14,9 @@ public class PointsOnKill : MonoBehaviour
 
     void OnDestroy()
     {
-        gameManager = GameObject.Find("GameManager");
-        gm = (GameManager)gameManager.GetComponent(typeof(GameManager));
+
+        gm = (GameManager)GameObject.Find("GameManager").GetComponent(typeof(GameManager));
+
         gm.addPoints(pointsForKill);
     }
 }

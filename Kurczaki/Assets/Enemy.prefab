@@ -145,8 +145,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 1
-  PlayerExplosion: {fileID: 0}
+  PlayerExplosion: {fileID: 2802169523652631199, guid: 1e9f7e6ff9629a94881b6392d154c660, type: 3}
   EnemyExplosion: {fileID: 7329146276000156069, guid: 47c9d3f787730ae4ba78baea7e7dc3f0, type: 3}
+  player: {fileID: 8300000, guid: dfc5ea7597079654b9bd8a7d061a1d01, type: 3}
+  enemy: {fileID: 8300000, guid: 70188e320a1c1db4bad9cbfda63e8d64, type: 3}
+  _mixer: {fileID: 24100000, guid: d67ff7ffaa7e3f1409dab84cb55dc8e3, type: 2}
+  AS: {fileID: 0}
 --- !u!114 &-8503834280072421153
 MonoBehaviour:
   m_ObjectHideFlags: 0
