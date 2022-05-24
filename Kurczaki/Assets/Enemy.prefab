@@ -145,6 +145,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 1
+  PlayerExplosion: {fileID: 0}
+  EnemyExplosion: {fileID: 7329146276000156069, guid: 47c9d3f787730ae4ba78baea7e7dc3f0, type: 3}
 --- !u!114 &-8503834280072421153
 MonoBehaviour:
   m_ObjectHideFlags: 0
