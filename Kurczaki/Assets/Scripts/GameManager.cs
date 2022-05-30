@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 
@@ -9,7 +10,7 @@ public class GameManager : MonoBehaviour
 {
     //int weapon = 0;
     //int weaponLevel = 0;
-    int points = 0;
+    public static int points = 0;
     public int health = 3;
     public static int actualEnemycount = 0;
     public GameObject enemy, player;
@@ -18,6 +19,7 @@ public class GameManager : MonoBehaviour
     public float spawnWait, startWait,playerSpawnWait;
     public Text pointsText;
     public Image Heart1, Heart2, Heart3;
+    public GameObject gameOverPanel, pausePanel;
     
     public AudioMixer audiomixer;
 
@@ -54,9 +56,9 @@ public class GameManager : MonoBehaviour
         {
             for (int i = 0; i < enemyCountInWave; i++)
             {
-                if (actualEnemycount < 5)
+                if (actualEnemycount < Mathf.Ceil(GameManager.points/40)+1)
                 {
-                    Vector3 spawnPoint = new Vector3(Random.Range(-spawmValues.x - 1f, spawmValues.x), spawmValues.y, spawmValues.z);
+                    Vector3 spawnPoint = new Vector3(Random.Range(-spawmValues.x, spawmValues.x), Random.Range(200, 320), spawmValues.z);
                     Quaternion spawnRotation = Quaternion.identity;
                     Instantiate(enemy, spawnPoint, spawnRotation);
                     actualEnemycount++;
@@ -88,11 +90,52 @@ public class GameManager : MonoBehaviour
         {
             StartCoroutine(spawnPlayer());
         }
+        else
+        {
+            gameOverPanel.SetActive(true);
+            
+        }
     }
 
     public void addPoints(int pt)
     {
         points += pt;
         pointsText.text = "Punkty: " + points.ToString();
+    }
+
+    public void ReturnToMenu()
+    {
+
+        SceneManager.LoadScene(0);
+        Time.timeScale = 1;
+        paused = false;
+        SceneManager.UnloadScene(1);
+
+    }
+
+    public static bool paused = false;
+    public void PauseGame()
+    {
+        if (paused)
+        {
+            Time.timeScale = 1;
+            pausePanel.SetActive(false);
+        }
+        else 
+        {
+            pausePanel.SetActive(true);
+            Time.timeScale = 0f;
+        }
+        paused = !paused;
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (gameOverPanel.activeSelf) ReturnToMenu();
+            if (!gameOverPanel.activeSelf) PauseGame();
+        }
+
     }
 }

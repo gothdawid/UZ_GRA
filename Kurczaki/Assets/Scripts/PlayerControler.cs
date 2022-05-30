@@ -32,6 +32,8 @@ public class PlayerControler : MonoBehaviour
     float color = 255;
     void Update()
     {
+        if (GameManager.paused) return;
+
         Vector2 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         transform.position = new Vector3(pos.x, pos.y, -10f);
 

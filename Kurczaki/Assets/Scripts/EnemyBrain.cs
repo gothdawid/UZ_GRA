@@ -10,9 +10,8 @@ public class EnemyBrain : MonoBehaviour
     public Rigidbody2D rb;
 
 
-    public float fireDelayMax = 5f, fireDelayMin = 3f;
-    float fireDelay = 5f;
-    float cooldownTimer = 5f;
+    public float fireDelayMax = 3f, fireDelayMin = 1f;
+    float cooldownTimer = 3f;
 
 
     private void Start()
@@ -28,7 +27,7 @@ public class EnemyBrain : MonoBehaviour
             var newBullet = Instantiate(bullet) as GameObject;
             newBullet.transform.position = shootPoint.position;
 
-            cooldownTimer = Random.Range(fireDelayMin, fireDelayMax);
+            cooldownTimer = Random.Range(fireDelayMin * (200f / GameManager.points), fireDelayMax * (200f / GameManager.points));
         }
 
 
@@ -41,7 +40,9 @@ public class EnemyBrain : MonoBehaviour
     {
         while(true)
         {
-            yield return new WaitForSeconds(Random.Range(5f,20f));
+            float timeToAtack = 200 / (GameManager.points + 1f) + 1.5f;
+            float timeToAtack2 = 600 / (GameManager.points + 1f) + 3.5f;
+            yield return new WaitForSeconds(Random.Range(timeToAtack, timeToAtack2));
 
             GameObject player = GameObject.FindGameObjectWithTag("Player");
             if (player != null)
@@ -52,17 +53,19 @@ public class EnemyBrain : MonoBehaviour
                 float step = 0.01f;
                 while (i < 1.01f)
                 {
-                    yield return new WaitForSeconds(0.02f);
+                    yield return new WaitForSeconds(Random.Range(timeToAtack/300, timeToAtack2/200));
                     transform.position = Vector2.Lerp(Startxyz, Endxyz, i);
                     rb.AddForceAtPosition(new Vector2(50f, 50f), new Vector2(100f, 100f));
 
                     i += step;
                 }
+                Vector3 newLoc = new Vector3(Random.Range(-500, 500), Random.Range(200, 300), -10);
 
                 while (i > 0f)
                 {
+
                     yield return new WaitForSeconds(0.02f);
-                    transform.position = Vector2.Lerp(Startxyz, Endxyz, i);
+                    transform.position = Vector2.Lerp(newLoc, Endxyz, i);
                     rb.AddForceAtPosition(new Vector2(50f, 50f), new Vector2(100f, 100f));
 
                     i -= step;

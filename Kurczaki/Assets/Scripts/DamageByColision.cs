@@ -41,7 +41,6 @@ public class DamageByColision : MonoBehaviour
             if(EnemyExplosion != null) Instantiate(EnemyExplosion, transform.position, transform.rotation);
 
             Destroy(gameObject);
-            this.health = 1;
         }
     }
 
