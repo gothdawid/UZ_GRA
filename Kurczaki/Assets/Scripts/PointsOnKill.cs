@@ -19,6 +19,7 @@ public class PointsOnKill : MonoBehaviour
             gm = (GameManager)GameObject.Find("GameManager").GetComponent(typeof(GameManager));
 
             gm.addPoints(pointsForKill);
+            GameManager.actualEnemycount--;
         }
         catch (System.Exception)
         {

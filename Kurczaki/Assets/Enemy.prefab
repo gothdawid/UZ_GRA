@@ -239,6 +239,7 @@ GameObject:
   - component: {fileID: 2014230246427206350}
   - component: {fileID: 8757646012498311982}
   - component: {fileID: 883697994332075025}
+  - component: {fileID: -5645719551436645205}
   m_Layer: 7
   m_Name: Enemy
   m_TagString: Enemy
@@ -258,6 +259,7 @@ Transform:
   m_LocalScale: {x: 4, y: 4, z: 4}
   m_Children:
   - {fileID: 5974638945215243663}
+  - {fileID: 1546405890845401863}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -347,6 +349,23 @@ PolygonCollider2D:
       - {x: -2.339046, y: 3.2428665}
       - {x: -5.540979, y: 3.1950436}
       - {x: -5.533977, y: -3.1525037}
+--- !u!114 &-5645719551436645205
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 883697994332075026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 813d9e439427079438d68c95a8a96013, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bullet: {fileID: 1338389238145113147, guid: fc55d5f64c3f236449ba365549a60ad5, type: 3}
+  shootPoint: {fileID: 1546405890845401863}
+  rb: {fileID: 6076049795682264110}
+  fireDelayMax: 5
+  fireDelayMin: 3
 --- !u!1 &891741250770453971
 GameObject:
   m_ObjectHideFlags: 0
@@ -3365,6 +3384,36 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &8424504760032375412
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1546405890845401863}
+  m_Layer: 7
+  m_Name: ShootPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1546405890845401863
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8424504760032375412}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -8, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4399280365436897444}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8442228161340892165
 GameObject:
   m_ObjectHideFlags: 0

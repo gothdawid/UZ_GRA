@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     //int weaponLevel = 0;
     int points = 0;
     public int health = 3;
-
+    public static int actualEnemycount = 0;
     public GameObject enemy, player;
     public Vector3 spawmValues;
     public int enemyCountInWave;
@@ -54,10 +54,15 @@ public class GameManager : MonoBehaviour
         {
             for (int i = 0; i < enemyCountInWave; i++)
             {
-                Vector3 spawnPoint = new Vector3(Random.Range(-spawmValues.x-1f, spawmValues.x), spawmValues.y, spawmValues.z);
-                Quaternion spawnRotation = Quaternion.identity;
-                Instantiate (enemy, spawnPoint, spawnRotation);
+                if (actualEnemycount < 5)
+                {
+                    Vector3 spawnPoint = new Vector3(Random.Range(-spawmValues.x - 1f, spawmValues.x), spawmValues.y, spawmValues.z);
+                    Quaternion spawnRotation = Quaternion.identity;
+                    Instantiate(enemy, spawnPoint, spawnRotation);
+                    actualEnemycount++;
+                }
                 yield return new WaitForSeconds(spawnWait);
+                
             }
         }
     }
