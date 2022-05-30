@@ -14,9 +14,17 @@ public class PointsOnKill : MonoBehaviour
 
     void OnDestroy()
     {
+        try
+        {
+            gm = (GameManager)GameObject.Find("GameManager").GetComponent(typeof(GameManager));
 
-        gm = (GameManager)GameObject.Find("GameManager").GetComponent(typeof(GameManager));
+            gm.addPoints(pointsForKill);
+        }
+        catch (System.Exception)
+        {
+            //wy³¹czono grê
 
-        gm.addPoints(pointsForKill);
+        }
     }
+
 }
