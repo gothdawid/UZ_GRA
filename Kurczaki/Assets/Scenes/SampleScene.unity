@@ -304,11 +304,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5e8d4163456c6b45a031e334ca0c097, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 883697994332075026, guid: 5ecdae436b4f2a34c89c3f54cc9d8073, type: 3}
   player: {fileID: 5206137529915558246, guid: 0956d0668ec61f042bf130491a939a25, type: 3}
+  enemies:
+  - {fileID: 883697994332075026, guid: 5ecdae436b4f2a34c89c3f54cc9d8073, type: 3}
+  - {fileID: 1299764407697140323, guid: e61bdf7920ff2a84daef5a23065cd85f, type: 3}
+  - {fileID: 2236455592477633910, guid: 79464be706feebc478de4aab47176055, type: 3}
+  - {fileID: 4397577329245682053, guid: ac74eeb0437837748844221aeb344680, type: 3}
   spawmValues: {x: 500, y: 300, z: -10}
   enemyCountInWave: 4
-  spawnWait: 0.5
+  spawnWait: 1.5
   startWait: 5
   playerSpawnWait: 1
   pointsText: {fileID: 1602836725}

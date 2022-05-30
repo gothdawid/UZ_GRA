@@ -13,7 +13,8 @@ public class GameManager : MonoBehaviour
     public static int points = 0;
     public static int health = 3;
     public static int actualEnemycount = 0;
-    public GameObject enemy, player;
+    public GameObject player;
+    public GameObject[] enemies;
     public Vector3 spawmValues;
     public int enemyCountInWave;
     public float spawnWait, startWait,playerSpawnWait;
@@ -25,6 +26,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        points = 0; health = 3;
         StartCoroutine(spawnPlayer());
         StartCoroutine(SpawnWaves());
     }
@@ -52,20 +54,24 @@ public class GameManager : MonoBehaviour
     IEnumerator SpawnWaves()
     {
         yield return new WaitForSeconds(startWait);
-        while(true)
+        GameObject enemy;
+        while (true)
         {
-            for (int i = 0; i < enemyCountInWave; i++)
+            int chance = Random.Range(0, 99);
+
+            if(chance > 60) enemy = enemies[0];
+            else if(chance > 30) enemy = enemies[1];
+            else if (chance > 10) enemy = enemies[2];
+            else enemy = enemies[3];
+
+            if (actualEnemycount < Mathf.Ceil(GameManager.points / 80) + 1)
             {
-                if (actualEnemycount < Mathf.Ceil(GameManager.points / 60) + 1)
-                {
-                    Vector3 spawnPoint = new Vector3(Random.Range(-spawmValues.x, spawmValues.x), Random.Range(200, 320), spawmValues.z);
-                    Quaternion spawnRotation = Quaternion.identity;
-                    Instantiate(enemy, spawnPoint, spawnRotation);
-                    actualEnemycount++;
-                }
-                yield return new WaitForSeconds(spawnWait);
-                
+                Vector3 spawnPoint = new Vector3(Random.Range(-spawmValues.x, spawmValues.x), Random.Range(200, 320), spawmValues.z);
+                Quaternion spawnRotation = Quaternion.identity;
+                Instantiate(enemy, spawnPoint, spawnRotation);
+                actualEnemycount++;
             }
+            yield return new WaitForSeconds(spawnWait); 
         }
     }
 

@@ -20,6 +20,7 @@ public class PlayerControler : MonoBehaviour
 
     void Start()
     {
+        level = 1; speed = 1;
         gObj = GameObject.Find("WeaponImage");
         WeaponImage = (Image)gObj.GetComponent(typeof(Image));
 
