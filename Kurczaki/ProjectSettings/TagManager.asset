@@ -6,6 +6,7 @@ TagManager:
   tags:
   - MainMenu
   - ShotPoint
+  - Enemy
   layers:
   - Default
   - TransparentFX
