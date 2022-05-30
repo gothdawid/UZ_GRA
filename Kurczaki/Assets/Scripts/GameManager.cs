@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     //int weapon = 0;
     //int weaponLevel = 0;
     public static int points = 0;
-    public int health = 3;
+    public static int health = 3;
     public static int actualEnemycount = 0;
     public GameObject enemy, player;
     public Vector3 spawmValues;
@@ -56,7 +56,7 @@ public class GameManager : MonoBehaviour
         {
             for (int i = 0; i < enemyCountInWave; i++)
             {
-                if (actualEnemycount < Mathf.Ceil(GameManager.points/40)+1)
+                if (actualEnemycount < Mathf.Ceil(GameManager.points / 60) + 1)
                 {
                     Vector3 spawnPoint = new Vector3(Random.Range(-spawmValues.x, spawmValues.x), Random.Range(200, 320), spawmValues.z);
                     Quaternion spawnRotation = Quaternion.identity;
@@ -71,7 +71,7 @@ public class GameManager : MonoBehaviour
 
     public void takeDMG(GameObject obj)
     {
-        this.health--;
+        health--;
         if(health == 2)
         {
             Heart3.enabled = false;
@@ -86,9 +86,11 @@ public class GameManager : MonoBehaviour
         }
 
         Destroy(obj);
-        if (this.health >= 0)
+        if (health >= 0)
         {
             StartCoroutine(spawnPlayer());
+            PlayerControler.level--;
+            PlayerControler.speed--;
         }
         else
         {

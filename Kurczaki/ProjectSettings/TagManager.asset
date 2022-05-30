@@ -7,11 +7,14 @@ TagManager:
   - MainMenu
   - ShotPoint
   - Enemy
+  - HP
+  - Level
+  - Speed
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Upgrades
   - Water
   - UI
   - Player

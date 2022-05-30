@@ -6,7 +6,7 @@ public class EnemyBrain : MonoBehaviour
 {
     Vector2 playerLoc = new Vector2(20f,-270f);
     public GameObject bullet;
-    public Transform shootPoint;
+    public Transform[] shootPointsList;
     public Rigidbody2D rb;
 
 
@@ -24,8 +24,11 @@ public class EnemyBrain : MonoBehaviour
     {
         if (cooldownTimer <= 0)
         {
-            var newBullet = Instantiate(bullet) as GameObject;
-            newBullet.transform.position = shootPoint.position;
+            foreach (Transform shootPoint in shootPointsList)
+            {
+                var newBullet = Instantiate(bullet) as GameObject;
+                newBullet.transform.position = shootPoint.position;
+            }
 
             cooldownTimer = Random.Range(fireDelayMin * (200f / GameManager.points), fireDelayMax * (200f / GameManager.points));
         }
@@ -40,8 +43,8 @@ public class EnemyBrain : MonoBehaviour
     {
         while(true)
         {
-            float timeToAtack = 200 / (GameManager.points + 1f) + 1.5f;
-            float timeToAtack2 = 600 / (GameManager.points + 1f) + 3.5f;
+            float timeToAtack = 3f * (200f / GameManager.points + 1);
+            float timeToAtack2 = 5f * (200f / GameManager.points + 1);
             yield return new WaitForSeconds(Random.Range(timeToAtack, timeToAtack2));
 
             GameObject player = GameObject.FindGameObjectWithTag("Player");
@@ -53,7 +56,7 @@ public class EnemyBrain : MonoBehaviour
                 float step = 0.01f;
                 while (i < 1.01f)
                 {
-                    yield return new WaitForSeconds(Random.Range(timeToAtack/300, timeToAtack2/200));
+                    yield return new WaitForSeconds(Random.Range(0.01f+(0.01f*5/GameManager.points), 0.02f + (0.02f * 10 / GameManager.points)));
                     transform.position = Vector2.Lerp(Startxyz, Endxyz, i);
                     rb.AddForceAtPosition(new Vector2(50f, 50f), new Vector2(100f, 100f));
 

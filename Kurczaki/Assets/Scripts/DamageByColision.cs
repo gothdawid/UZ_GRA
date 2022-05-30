@@ -23,7 +23,29 @@ public class DamageByColision : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if(gameObject.layer == 6)
+        if(collision.gameObject.layer == 3)
+        {
+            switch(collision.gameObject.tag)
+            {
+                case "Speed":
+                    {
+                        PlayerControler.speed++;
+                        break;
+                    }
+                case "Level":
+                    {
+                        PlayerControler.level++;
+                        break;
+                    }
+                case "HP":
+                    {
+                        GameManager.health++;
+                        break;
+                    }
+            }
+            Destroy(collision.gameObject);
+        }
+        else if(gameObject.layer == 6)
         {
             if (PlayerExplosion != null) Instantiate(PlayerExplosion, transform.position, transform.rotation);
             gm.takeDMG(gameObject);
