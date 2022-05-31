@@ -59,16 +59,17 @@ public class GameManager : MonoBehaviour
         {
             int chance = Random.Range(0, 99);
 
-            if(chance > 60) enemy = enemies[0];
+            if(chance > 50) enemy = enemies[0];
             else if(chance > 30) enemy = enemies[1];
-            else if (chance > 10) enemy = enemies[2];
+            else if (chance > 12) enemy = enemies[2];
             else enemy = enemies[3];
 
-            if (actualEnemycount < Mathf.Ceil(GameManager.points / 80) + 1)
+            if (actualEnemycount < Mathf.Ceil(GameManager.points / 100) + 1)
             {
-                Vector3 spawnPoint = new Vector3(Random.Range(-spawmValues.x, spawmValues.x), Random.Range(200, 320), spawmValues.z);
+                Vector3 startPoint = new Vector3(Random.Range(-spawmValues.x, spawmValues.x), Random.Range(200, 320), spawmValues.z);
                 Quaternion spawnRotation = Quaternion.identity;
-                Instantiate(enemy, spawnPoint, spawnRotation);
+                Instantiate(enemy, startPoint, spawnRotation);
+
                 actualEnemycount++;
             }
             yield return new WaitForSeconds(spawnWait); 
@@ -113,11 +114,13 @@ public class GameManager : MonoBehaviour
 
     public void ReturnToMenu()
     {
-
-        SceneManager.LoadScene(0);
+        Debug.Log("dupa");
         Time.timeScale = 1;
         paused = false;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         SceneManager.UnloadScene(1);
+        SceneManager.LoadScene(0);
 
     }
 
@@ -128,11 +131,15 @@ public class GameManager : MonoBehaviour
         {
             Time.timeScale = 1;
             pausePanel.SetActive(false);
+            Cursor.lockState = CursorLockMode.Confined;
+            Cursor.visible = false;
         }
         else 
         {
             pausePanel.SetActive(true);
-            Time.timeScale = 0f;
+            Time.timeScale = 0.02f;
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
         }
         paused = !paused;
     }

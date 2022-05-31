@@ -11,13 +11,15 @@ public class EnemyBrain : MonoBehaviour
 
 
     public float fireDelayMax = 3f, fireDelayMin = 1f;
-    float cooldownTimer = 3f;
+    float cooldownTimer = 1.5f;
 
 
     private void Start()
     {
         //player = GameObject.FindGameObjectWithTag("Player");
         //playerLoc = player.transform.position;
+        StartCoroutine(GoToStartPositionInTime());
+
         StartCoroutine(Kamikadze());
     }
     void Update()
@@ -39,6 +41,22 @@ public class EnemyBrain : MonoBehaviour
     }
 
 
+    IEnumerator GoToStartPositionInTime()
+    {
+        Vector3 startPoint = gameObject.transform.position;
+        Vector3 spawnPoint = new Vector3(Random.Range(-750, 750), Random.Range(405, 430), -10);
+        float i = 0;
+        while (i <= 1)
+        {
+            if (gameObject == null) break;
+            gameObject.transform.position = Vector2.Lerp(spawnPoint, startPoint, i);
+            i += 0.01f;
+            yield return new WaitForSeconds(0.01f);
+
+        }
+    }
+
+
     IEnumerator Kamikadze()
     {
         while(true)
@@ -52,13 +70,13 @@ public class EnemyBrain : MonoBehaviour
             {
                 Vector3 Startxyz = transform.position;
                 Vector3 Endxyz = player.transform.position;
+                Endxyz += new Vector3(Random.Range(-100,100), Random.Range(-100, 100), 0);
                 float i = 0.0f;
                 float step = 0.01f;
                 while (i < 1.01f)
                 {
-                    yield return new WaitForSeconds(Random.Range(0.01f+(0.01f*5/GameManager.points), 0.02f + (0.02f * 10 / GameManager.points)));
+                    yield return new WaitForSeconds(Random.Range(0.01f+(0.01f*50/GameManager.points), 0.02f + (0.02f * 100 / GameManager.points)));
                     transform.position = Vector2.Lerp(Startxyz, Endxyz, i);
-                    rb.AddForceAtPosition(new Vector2(50f, 50f), new Vector2(100f, 100f));
 
                     i += step;
                 }
