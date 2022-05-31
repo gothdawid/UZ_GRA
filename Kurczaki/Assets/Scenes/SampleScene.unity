@@ -312,7 +312,7 @@ MonoBehaviour:
   - {fileID: 4397577329245682053, guid: ac74eeb0437837748844221aeb344680, type: 3}
   spawmValues: {x: 500, y: 300, z: -10}
   enemyCountInWave: 4
-  spawnWait: 1.5
+  spawnWait: 0.5
   startWait: 5
   playerSpawnWait: 1
   pointsText: {fileID: 1602836725}

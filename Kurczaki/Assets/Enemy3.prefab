@@ -191,11 +191,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa899e6ae7f52394e847c4fa839073b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HPChance: 1
+  HPChance: 3
   HPUpgrade: {fileID: 8679011056093362820, guid: ce3f700b1e170be4782912486c0fc708, type: 3}
-  WeaponChance: 2
+  WeaponChance: 4
   WeaponUpgrade: {fileID: 7125634486413461119, guid: e4ec825220b64a842bbfbc1fe716e079, type: 3}
-  SpeedChance: 3
+  SpeedChance: 4
   SpeedUpgrade: {fileID: 5383519888525859475, guid: 428e98cc410eb0143998b66bd9ab3a89, type: 3}
 --- !u!1 &5020679731571179491
 GameObject:
