@@ -148,7 +148,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigibody: {fileID: 1338389238145113144}
-  Bulletspeed: -25000
+  Bulletspeed: -20000
 --- !u!114 &5867572167887078299
 MonoBehaviour:
   m_ObjectHideFlags: 0

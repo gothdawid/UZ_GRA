@@ -17,8 +17,8 @@ public class MenuScript : MonoBehaviour
     public void newGame()
     {
 
+        SceneManager.UnloadSceneAsync(0);
         SceneManager.LoadScene(1);
-        SceneManager.UnloadScene(0);
     }
 
     private void Update()
@@ -28,8 +28,8 @@ public class MenuScript : MonoBehaviour
 
     public void loadGame()
     {
+        SceneManager.UnloadSceneAsync(0);
         SceneManager.LoadScene(1);
-        SceneManager.UnloadScene(0);
 
     }
 

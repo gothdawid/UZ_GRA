@@ -124,8 +124,8 @@ public class SettingsMenu : MonoBehaviour
         Screen.SetResolution(width, height, Screen.fullScreen, refreshRate);
         if(vsync) Application.targetFrameRate = refreshRate;
 
-        Debug.LogError(width.ToString() + "x" + height.ToString() + "@" + refreshRate.ToString());
-        Debug.LogError(Screen.width + "x" + Screen.height + "@" + refreshRate);
+        //Debug.LogError(width.ToString() + "x" + height.ToString() + "@" + refreshRate.ToString());
+        //Debug.LogError(Screen.width + "x" + Screen.height + "@" + refreshRate);
     }
 
     public void SetVSync(bool a)

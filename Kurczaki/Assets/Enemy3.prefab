@@ -30,6 +30,36 @@ Transform:
   m_Father: {fileID: 885434256525559091}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4379544125694245099
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5528850681528565900}
+  m_Layer: 7
+  m_Name: ShootPoint3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5528850681528565900
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4379544125694245099}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -50, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 885434256525559091}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4397577329245682053
 GameObject:
   m_ObjectHideFlags: 0
@@ -66,6 +96,7 @@ Transform:
   - {fileID: 2334987250385870517}
   - {fileID: 2607931742387302032}
   - {fileID: 3741815694916770754}
+  - {fileID: 5528850681528565900}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -102,7 +133,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68e583a0c0026d947bffa7299d794058, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 3
+  health: 6
   PlayerExplosion: {fileID: 2802169523652631199, guid: 1e9f7e6ff9629a94881b6392d154c660, type: 3}
   EnemyExplosion: {fileID: 7329146276000156069, guid: 47c9d3f787730ae4ba78baea7e7dc3f0, type: 3}
 --- !u!114 &5246055064213092025
@@ -176,9 +207,12 @@ MonoBehaviour:
   shootPointsList:
   - {fileID: 2607931742387302032}
   - {fileID: 3741815694916770754}
+  - {fileID: 5528850681528565900}
   rb: {fileID: 7284190815334001081}
-  fireDelayMax: 4
-  fireDelayMin: 2
+  fireDelayMin: 5
+  fireDelayMax: 7
+  kamikadzeDelayMin: 20
+  kamikadzeDelayMax: 30
 --- !u!114 &-6388859954240292147
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -191,11 +225,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa899e6ae7f52394e847c4fa839073b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HPChance: 3
+  HPChance: 2
   HPUpgrade: {fileID: 8679011056093362820, guid: ce3f700b1e170be4782912486c0fc708, type: 3}
-  WeaponChance: 4
+  WeaponChance: 3
   WeaponUpgrade: {fileID: 7125634486413461119, guid: e4ec825220b64a842bbfbc1fe716e079, type: 3}
-  SpeedChance: 4
+  SpeedChance: 3
   SpeedUpgrade: {fileID: 5383519888525859475, guid: 428e98cc410eb0143998b66bd9ab3a89, type: 3}
 --- !u!1 &5020679731571179491
 GameObject:

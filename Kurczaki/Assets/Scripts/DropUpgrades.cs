@@ -16,8 +16,8 @@ public class DropUpgrades : MonoBehaviour
     void OnTriggerEnter2D(Collider2D collision)
     {
         int chance = Random.Range(0, 99);
-
-        switch (Random.Range(1, 3))
+        int type = Random.Range(1, 4);
+        switch (type)
         {
             case 1:
                 if(chance <= HPChance)

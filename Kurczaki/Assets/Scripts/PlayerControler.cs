@@ -9,7 +9,6 @@ public class PlayerControler : MonoBehaviour
 {
     public float fireDelay = 0.5f;
     public float fire2Delay = 25;
-    public static int level = 1, speed = 1;
     public GameObject bullet;
     public Transform[] shootPointsList;
     float cooldownTimer = 0;
@@ -20,7 +19,6 @@ public class PlayerControler : MonoBehaviour
 
     void Start()
     {
-        level = 1; speed = 1;
         gObj = GameObject.Find("WeaponImage");
         WeaponImage = (Image)gObj.GetComponent(typeof(Image));
 
@@ -39,7 +37,7 @@ public class PlayerControler : MonoBehaviour
 
         if (Input.GetKey(KeyCode.Mouse0) && cooldownTimer <= 0)
         {
-            switch (level)
+            switch (GameManager.weaponLevel)
             {
                 case 1: {
                         var newBullet = Instantiate(bullet) as GameObject;
@@ -106,7 +104,7 @@ public class PlayerControler : MonoBehaviour
                         break;
                     }
             }
-            switch (speed)
+            switch (GameManager.weaponSpeedLevel)
             {
                 case 1:
                     {
@@ -139,12 +137,10 @@ public class PlayerControler : MonoBehaviour
                         break;
                     }
             }
-
         }
 
         if (Input.GetKeyDown(KeyCode.Mouse1) && cooldownTimer2 <= 0)
         {
-            Debug.Log("2");
             cooldownTimer2 = fire2Delay;
         }
 

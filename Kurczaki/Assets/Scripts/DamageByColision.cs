@@ -29,17 +29,17 @@ public class DamageByColision : MonoBehaviour
             {
                 case "Speed":
                     {
-                        PlayerControler.speed++;
+                        if(GameManager.weaponSpeedLevel < GameManager.maxWeaponSpeedLevel) GameManager.weaponSpeedLevel++;
                         break;
                     }
                 case "Level":
                     {
-                        PlayerControler.level++;
+                        if (GameManager.weaponLevel < GameManager.maxWeaponLevel) GameManager.weaponLevel++;
                         break;
                     }
                 case "HP":
                     {
-                        GameManager.health++;
+                        if (GameManager.health < GameManager.maxHealth) gm.addHealth();
                         break;
                     }
             }

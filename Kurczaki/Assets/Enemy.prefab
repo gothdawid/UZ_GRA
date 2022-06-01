@@ -71,7 +71,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68e583a0c0026d947bffa7299d794058, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 1
+  health: 2
   PlayerExplosion: {fileID: 2802169523652631199, guid: 1e9f7e6ff9629a94881b6392d154c660, type: 3}
   EnemyExplosion: {fileID: 7329146276000156069, guid: 47c9d3f787730ae4ba78baea7e7dc3f0, type: 3}
 --- !u!114 &8757646012498311982
@@ -139,8 +139,10 @@ MonoBehaviour:
   shootPointsList:
   - {fileID: 1546405890845401863}
   rb: {fileID: 6076049795682264110}
-  fireDelayMax: 5
-  fireDelayMin: 3
+  fireDelayMin: 4
+  fireDelayMax: 7
+  kamikadzeDelayMin: 12
+  kamikadzeDelayMax: 14
 --- !u!114 &4989737230219583999
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -153,11 +155,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa899e6ae7f52394e847c4fa839073b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HPChance: 2
+  HPChance: 1
   HPUpgrade: {fileID: 8679011056093362820, guid: ce3f700b1e170be4782912486c0fc708, type: 3}
-  WeaponChance: 3
+  WeaponChance: 2
   WeaponUpgrade: {fileID: 7125634486413461119, guid: e4ec825220b64a842bbfbc1fe716e079, type: 3}
-  SpeedChance: 3
+  SpeedChance: 2
   SpeedUpgrade: {fileID: 5383519888525859475, guid: 428e98cc410eb0143998b66bd9ab3a89, type: 3}
 --- !u!1 &8424504760032375412
 GameObject:

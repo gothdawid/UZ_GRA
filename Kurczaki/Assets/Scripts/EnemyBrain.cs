@@ -4,23 +4,20 @@ using UnityEngine;
 
 public class EnemyBrain : MonoBehaviour
 {
-    Vector2 playerLoc = new Vector2(20f,-270f);
     public GameObject bullet;
     public Transform[] shootPointsList;
     public Rigidbody2D rb;
 
 
-    public float fireDelayMax = 3f, fireDelayMin = 1f;
+    public float fireDelayMin = 1f, fireDelayMax = 3f, kamikadzeDelayMin = 10f, kamikadzeDelayMax = 15f;
     float cooldownTimer = 1.5f;
 
 
     private void Start()
     {
-        //player = GameObject.FindGameObjectWithTag("Player");
-        //playerLoc = player.transform.position;
         StartCoroutine(GoToStartPositionInTime());
-
         StartCoroutine(Kamikadze());
+
     }
     void Update()
     {
@@ -31,13 +28,9 @@ public class EnemyBrain : MonoBehaviour
                 var newBullet = Instantiate(bullet) as GameObject;
                 newBullet.transform.position = shootPoint.position;
             }
-
-            cooldownTimer = Random.Range(fireDelayMin * (200f / GameManager.points), fireDelayMax * (200f / GameManager.points));
+            cooldownTimer = Random.Range(fireDelayMin * (300f / (GameManager.points / 3f + 300f)), fireDelayMax * (300f / (GameManager.points / 3f + 300f)));
         }
-
-
         if (cooldownTimer >= 0) cooldownTimer -= Time.deltaTime;
-
     }
 
 
@@ -52,7 +45,6 @@ public class EnemyBrain : MonoBehaviour
             gameObject.transform.position = Vector2.Lerp(spawnPoint, startPoint, i);
             i += 0.01f;
             yield return new WaitForSeconds(0.01f);
-
         }
     }
 
@@ -61,8 +53,8 @@ public class EnemyBrain : MonoBehaviour
     {
         while(true)
         {
-            float timeToAtack = 3f * (200f / GameManager.points + 1);
-            float timeToAtack2 = 5f * (200f / GameManager.points + 1);
+            float timeToAtack = kamikadzeDelayMin * GameManager.mnoznikPoziomu;
+            float timeToAtack2 = kamikadzeDelayMax * GameManager.mnoznikPoziomu;
             yield return new WaitForSeconds(Random.Range(timeToAtack, timeToAtack2));
 
             GameObject player = GameObject.FindGameObjectWithTag("Player");
@@ -72,10 +64,11 @@ public class EnemyBrain : MonoBehaviour
                 Vector3 Endxyz = player.transform.position;
                 Endxyz += new Vector3(Random.Range(-100,100), Random.Range(-100, 100), 0);
                 float i = 0.0f;
-                float step = 0.01f;
+                float step = 0.005f;
+                float minSpeed = 0.02f, maxSpeed = 0.01f;
                 while (i < 1.01f)
                 {
-                    yield return new WaitForSeconds(Random.Range(0.01f+(0.01f*50/GameManager.points), 0.02f + (0.02f * 100 / GameManager.points)));
+                    yield return new WaitForSeconds(Random.Range(maxSpeed * GameManager.mnoznikPoziomu, minSpeed * GameManager.mnoznikPoziomu));
                     transform.position = Vector2.Lerp(Startxyz, Endxyz, i);
 
                     i += step;
@@ -85,10 +78,8 @@ public class EnemyBrain : MonoBehaviour
                 while (i > 0f)
                 {
 
-                    yield return new WaitForSeconds(0.02f);
+                    yield return new WaitForSeconds(0.01f);
                     transform.position = Vector2.Lerp(newLoc, Endxyz, i);
-                    rb.AddForceAtPosition(new Vector2(50f, 50f), new Vector2(100f, 100f));
-
                     i -= step;
                 }
             }

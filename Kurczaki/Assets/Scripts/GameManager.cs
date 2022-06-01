@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
@@ -8,24 +7,29 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    //int weapon = 0;
-    //int weaponLevel = 0;
     public static int points = 0;
-    public static int health = 3;
+    public static int health = 4, weaponLevel = 1, weaponSpeedLevel = 1;
     public static int actualEnemycount = 0;
     public GameObject player;
     public GameObject[] enemies;
     public Vector3 spawmValues;
-    public int enemyCountInWave;
     public float spawnWait, startWait,playerSpawnWait;
     public Text pointsText;
     public Image Heart1, Heart2, Heart3;
     public GameObject gameOverPanel, pausePanel;
+
+    public static bool paused = false;
+    private bool hasCollide = false;
+
+    public static int maxHealth = 5, maxWeaponLevel = 5, maxWeaponSpeedLevel = 5;
     
     public AudioMixer audiomixer;
 
+    public static float mnoznikPoziomu = 1;
+
     void Start()
     {
+        weaponLevel = 1; weaponSpeedLevel = 1;
         points = 0; health = 3;
         StartCoroutine(spawnPlayer());
         StartCoroutine(SpawnWaves());
@@ -34,7 +38,9 @@ public class GameManager : MonoBehaviour
     float startGain = -80;
     private void FixedUpdate()
     {
-        if(startGain < 0)
+        mnoznikPoziomu = (300f / (points / 3f + 300f));
+
+        if (startGain < 0)
         {
             audiomixer.SetFloat("mainGain", startGain);
             startGain += 1f;
@@ -47,7 +53,7 @@ public class GameManager : MonoBehaviour
         Vector3 spawnPoint = new Vector3(0f,-250f,-10f);
         Quaternion spawnRotation = Quaternion.identity;
         Instantiate(player, spawnPoint, spawnRotation);
-
+        hasCollide = false;
     }
 
 
@@ -64,7 +70,7 @@ public class GameManager : MonoBehaviour
             else if (chance > 12) enemy = enemies[2];
             else enemy = enemies[3];
 
-            if (actualEnemycount < Mathf.Ceil(GameManager.points / 100) + 1)
+            if (actualEnemycount < Mathf.Ceil(GameManager.points / 150) + 3)
             {
                 Vector3 startPoint = new Vector3(Random.Range(-spawmValues.x, spawmValues.x), Random.Range(200, 320), spawmValues.z);
                 Quaternion spawnRotation = Quaternion.identity;
@@ -78,32 +84,42 @@ public class GameManager : MonoBehaviour
 
     public void takeDMG(GameObject obj)
     {
-        health--;
-        if(health == 2)
-        {
-            Heart3.enabled = false;
-        }
-        if (health == 1)
-        {
-            Heart2.enabled = false;
-        }
-        if (health == 0)
-        {
-            Heart1.enabled = false;
-        }
-
-        Destroy(obj);
         if (health >= 0)
         {
-            StartCoroutine(spawnPlayer());
-            PlayerControler.level--;
-            PlayerControler.speed--;
+            if(!hasCollide)
+            {
+                Destroy(obj);
+                StartCoroutine(spawnPlayer());
+                hasCollide = true;
+                health--;
+                if (weaponLevel > 1) weaponLevel--;
+                if (weaponSpeedLevel > 1) weaponSpeedLevel--;
+            }
         }
         else
         {
-            gameOverPanel.SetActive(true);
-            
+            ShowGameOverPanel();
+            Destroy(obj);
         }
+        updateHealthBar();
+    }
+
+    public void addHealth()
+    {
+        health++;
+        updateHealthBar();
+    }
+
+    public void updateHealthBar()
+    {
+        if(health >= 3) Heart3.enabled = true;
+        if (health >= 2) Heart2.enabled = true;
+        if (health >= 1) Heart1.enabled = true;
+
+        if(health < 3) Heart3.enabled = false;
+        if(health < 2) Heart2.enabled = false;
+        if(health < 1) Heart2.enabled = false;
+
     }
 
     public void addPoints(int pt)
@@ -114,17 +130,22 @@ public class GameManager : MonoBehaviour
 
     public void ReturnToMenu()
     {
-        Debug.Log("dupa");
         Time.timeScale = 1;
         paused = false;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
-        SceneManager.UnloadScene(1);
+        SceneManager.UnloadSceneAsync(1);
         SceneManager.LoadScene(0);
-
     }
 
-    public static bool paused = false;
+    public void ShowGameOverPanel()
+    {
+        gameOverPanel.SetActive(true);
+        Time.timeScale = 0.6f;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
+
     public void PauseGame()
     {
         if (paused)
@@ -143,6 +164,7 @@ public class GameManager : MonoBehaviour
         }
         paused = !paused;
     }
+
 
     void Update()
     {
