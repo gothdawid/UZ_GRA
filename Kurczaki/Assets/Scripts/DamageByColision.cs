@@ -42,6 +42,16 @@ public class DamageByColision : MonoBehaviour
                         if (GameManager.health < GameManager.maxHealth) gm.addHealth();
                         break;
                     }
+                case "Points":
+                    {
+                        gm.addPoints(50);
+                        break;
+                    }
+                case "Rocket":
+                    {
+                        //if (GameManager.health < GameManager.maxHealth) gm.addHealth();
+                        break;
+                    }
             }
             Destroy(collision.gameObject);
         }

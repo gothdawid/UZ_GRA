@@ -196,6 +196,10 @@ MonoBehaviour:
   WeaponUpgrade: {fileID: 7125634486413461119, guid: e4ec825220b64a842bbfbc1fe716e079, type: 3}
   SpeedChance: 2
   SpeedUpgrade: {fileID: 5383519888525859475, guid: 428e98cc410eb0143998b66bd9ab3a89, type: 3}
+  RocketChance: 1
+  RocketCoin: {fileID: 2693307933441998901, guid: 2f7d721f0695822499145e0f9bed9c41, type: 3}
+  PointsChance: 5
+  PointsCoin: {fileID: 1845917668709146666, guid: ab8db0686069ddf459fc753ac9ed4bf8, type: 3}
 --- !u!1 &7684244885960502277
 GameObject:
   m_ObjectHideFlags: 0

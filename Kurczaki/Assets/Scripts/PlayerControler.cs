@@ -113,27 +113,37 @@ public class PlayerControler : MonoBehaviour
                     }
                 case 2:
                     {
-                        cooldownTimer = fireDelay - fireDelay / 5f;
+                        cooldownTimer = fireDelay - fireDelay / 12f * 1;
                         break;
                     }
                 case 3:
                     {
-                        cooldownTimer = fireDelay - fireDelay / 5f * 1.5f;
+                        cooldownTimer = fireDelay - fireDelay / 12f * 2f;
                         break;
                     }
                 case 4:
                     {
-                        cooldownTimer = fireDelay - fireDelay / 5f * 2f;
+                        cooldownTimer = fireDelay - fireDelay / 12f * 3f;
                         break;
                     }
                 case 5:
                     {
-                        cooldownTimer = fireDelay - fireDelay / 5f * 2.5f;
+                        cooldownTimer = fireDelay - fireDelay / 12f * 4f;
+                        break;
+                    }
+                case 6:
+                    {
+                        cooldownTimer = fireDelay - fireDelay / 12f * 5f;
+                        break;
+                    }
+                case 7:
+                    {
+                        cooldownTimer = fireDelay - fireDelay / 12f * 6f;
                         break;
                     }
                 default:
                     {
-                        cooldownTimer = fireDelay - fireDelay / 5f * 2.5f;
+                        cooldownTimer = fireDelay - fireDelay / 10f * 2.5f;
                         break;
                     }
             }

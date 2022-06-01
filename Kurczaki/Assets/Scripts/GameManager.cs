@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
     public static bool paused = false;
     private bool hasCollide = false;
 
-    public static int maxHealth = 5, maxWeaponLevel = 5, maxWeaponSpeedLevel = 5;
+    public static int maxHealth = 5, maxWeaponLevel = 7, maxWeaponSpeedLevel = 7;
     
     public AudioMixer audiomixer;
 
@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        Debug.Log("Start");
         weaponLevel = 1; weaponSpeedLevel = 1;
         points = 0; health = 3;
         StartCoroutine(spawnPlayer());
@@ -49,6 +50,7 @@ public class GameManager : MonoBehaviour
 
     IEnumerator spawnPlayer()
     {
+
         yield return new WaitForSeconds(playerSpawnWait);
         Vector3 spawnPoint = new Vector3(0f,-250f,-10f);
         Quaternion spawnRotation = Quaternion.identity;
@@ -59,6 +61,8 @@ public class GameManager : MonoBehaviour
 
     IEnumerator SpawnWaves()
     {
+        Debug.Log("Start2");
+
         yield return new WaitForSeconds(startWait);
         GameObject enemy;
         while (true)
@@ -84,22 +88,22 @@ public class GameManager : MonoBehaviour
 
     public void takeDMG(GameObject obj)
     {
-        if (health >= 0)
+        if(!hasCollide)
         {
-            if(!hasCollide)
-            {
-                Destroy(obj);
-                StartCoroutine(spawnPlayer());
-                hasCollide = true;
-                health--;
-                if (weaponLevel > 1) weaponLevel--;
-                if (weaponSpeedLevel > 1) weaponSpeedLevel--;
-            }
+            Destroy(obj);
+            hasCollide = true;
+            health--;
+        }
+
+        if(health > 0)
+        {
+            StartCoroutine(spawnPlayer());
+            if (weaponLevel > 1) weaponLevel--;
+            if (weaponSpeedLevel > 1) weaponSpeedLevel--;
         }
         else
         {
             ShowGameOverPanel();
-            Destroy(obj);
         }
         updateHealthBar();
     }
@@ -112,13 +116,14 @@ public class GameManager : MonoBehaviour
 
     public void updateHealthBar()
     {
+        Debug.Log(health);
         if(health >= 3) Heart3.enabled = true;
         if (health >= 2) Heart2.enabled = true;
         if (health >= 1) Heart1.enabled = true;
 
         if(health < 3) Heart3.enabled = false;
         if(health < 2) Heart2.enabled = false;
-        if(health < 1) Heart2.enabled = false;
+        if(health < 1) Heart1.enabled = false;
 
     }
 

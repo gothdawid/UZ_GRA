@@ -10,6 +10,8 @@ TagManager:
   - HP
   - Level
   - Speed
+  - Points
+  - Rocket
   layers:
   - Default
   - TransparentFX

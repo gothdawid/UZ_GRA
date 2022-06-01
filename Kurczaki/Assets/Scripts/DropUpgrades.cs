@@ -13,10 +13,23 @@ public class DropUpgrades : MonoBehaviour
     public int SpeedChance = 5;
     public GameObject SpeedUpgrade;
 
+    public int RocketChance = 5;
+    public GameObject RocketCoin;
+
+    public int PointsChance = 5;
+    public GameObject PointsCoin;
+
     void OnTriggerEnter2D(Collider2D collision)
     {
         int chance = Random.Range(0, 99);
-        int type = Random.Range(1, 4);
+
+        if (chance <= PointsChance)
+        {
+            Quaternion spawnRotation = Quaternion.identity;
+            Instantiate(PointsCoin, gameObject.transform.position, spawnRotation);
+        }
+
+        int type = Random.Range(1, 5);
         switch (type)
         {
             case 1:
@@ -38,6 +51,13 @@ public class DropUpgrades : MonoBehaviour
                 {
                     Quaternion spawnRotation = Quaternion.identity;
                     Instantiate(SpeedUpgrade, gameObject.transform.position, spawnRotation);
+                }
+                break;
+            case 4:
+                if (chance <= RocketChance)
+                {
+                    Quaternion spawnRotation = Quaternion.identity;
+                    Instantiate(RocketCoin, gameObject.transform.position, spawnRotation);
                 }
                 break;
         }

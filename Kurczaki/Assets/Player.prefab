@@ -807,9 +807,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e34021af603ccd54ab32377a6f997e5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireDelay: 0.5
+  fireDelay: 0.48
   fire2Delay: 25
-  level: 5
   bullet: {fileID: 2436396346303608904, guid: 1fee1a676fe0f4b4aacbebd9062965c7, type: 3}
   shootPointsList:
   - {fileID: 7722499252904732303}
