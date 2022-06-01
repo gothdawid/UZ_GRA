@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("Start");
         weaponLevel = 1; weaponSpeedLevel = 1;
-        points = 0; health = 3;
+        points = 0; health = 3; actualEnemycount = 0;
         StartCoroutine(spawnPlayer());
         StartCoroutine(SpawnWaves());
     }
