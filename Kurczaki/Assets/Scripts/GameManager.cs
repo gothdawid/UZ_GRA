@@ -37,9 +37,9 @@ public class GameManager : MonoBehaviour
     }
 
     float startGain = -80;
-    private void FixedUpdate()
+    void FixedUpdate()
     {
-        mnoznikPoziomu = (300f / (points / 3f + 300f));
+        mnoznikPoziomu = (1000f / (points / 4f + 1000f));
 
         if (startGain < 0)
         {
@@ -74,7 +74,7 @@ public class GameManager : MonoBehaviour
             else if (chance > 12) enemy = enemies[2];
             else enemy = enemies[3];
 
-            if (actualEnemycount < Mathf.Ceil(GameManager.points / 150) + 3)
+            if (actualEnemycount < Mathf.Ceil(GameManager.points / 225) + 3)
             {
                 Vector3 startPoint = new Vector3(Random.Range(-spawmValues.x, spawmValues.x), Random.Range(200, 320), spawmValues.z);
                 Quaternion spawnRotation = Quaternion.identity;
