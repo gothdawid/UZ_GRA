@@ -52,10 +52,10 @@ public class GameManager : MonoBehaviour
     {
 
         yield return new WaitForSeconds(playerSpawnWait);
+        hasCollide = false;
         Vector3 spawnPoint = new Vector3(0f,-250f,-10f);
         Quaternion spawnRotation = Quaternion.identity;
         Instantiate(player, spawnPoint, spawnRotation);
-        hasCollide = false;
     }
 
 
@@ -88,23 +88,32 @@ public class GameManager : MonoBehaviour
 
     public void takeDMG(GameObject obj)
     {
+        Debug.Log("test1");
         if(!hasCollide)
         {
-            Destroy(obj);
-            hasCollide = true;
+            Debug.Log("test2");
+
             health--;
+            hasCollide = true;
+            Destroy(obj);
         }
 
         if(health > 0)
         {
+            Debug.Log("test3");
+
             StartCoroutine(spawnPlayer());
             if (weaponLevel > 1) weaponLevel--;
             if (weaponSpeedLevel > 1) weaponSpeedLevel--;
         }
         else
         {
+            Debug.Log("test4");
+
             ShowGameOverPanel();
         }
+        Debug.Log("test5");
+
         updateHealthBar();
     }
 
