@@ -9,6 +9,11 @@ public class MoveForward : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rigibody.velocity = Vector2.up * Bulletspeed * Time.fixedDeltaTime;
+        Vector2 velocity = Vector2.up * Bulletspeed * Time.fixedDeltaTime;
+
+        Quaternion rot = gameObject.transform.rotation;
+        rigibody.velocity = rot * velocity;
+        //ustaw wzglêdem obrotu
+        
     }
 }
