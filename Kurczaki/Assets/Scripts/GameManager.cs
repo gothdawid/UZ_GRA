@@ -29,7 +29,6 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        Debug.Log("Start");
         weaponLevel = 1; weaponSpeedLevel = 1;
         points = 0; health = 3; actualEnemycount = 0;
         StartCoroutine(spawnPlayer());
@@ -39,7 +38,7 @@ public class GameManager : MonoBehaviour
     float startGain = -80;
     void FixedUpdate()
     {
-        mnoznikPoziomu = (1000f / (points / 4f + 1000f));
+        mnoznikPoziomu = (1000f / (points / 6f + 1000f));
 
         if (startGain < 0)
         {
@@ -61,8 +60,6 @@ public class GameManager : MonoBehaviour
 
     IEnumerator SpawnWaves()
     {
-        Debug.Log("Start2");
-
         yield return new WaitForSeconds(startWait);
         GameObject enemy;
         while (true)
@@ -74,9 +71,14 @@ public class GameManager : MonoBehaviour
             else if (chance > 12) enemy = enemies[2];
             else enemy = enemies[3];
 
-            if (actualEnemycount < Mathf.Ceil(GameManager.points / 225) + 3)
+            if (actualEnemycount < Mathf.Ceil(GameManager.points / 300) + 3)
             {
                 Vector3 startPoint = new Vector3(Random.Range(-spawmValues.x, spawmValues.x), Random.Range(200, 320), spawmValues.z);
+                // sprawdŸ czy pozycja startowa nie jest zajêta przez inny obiekt
+                while (Physics2D.OverlapCircle(startPoint, 30f) != null)
+                {
+                    startPoint = new Vector3(Random.Range(-spawmValues.x, spawmValues.x), Random.Range(200, 320), spawmValues.z);
+                }
                 Quaternion spawnRotation = Quaternion.identity;
                 Instantiate(enemy, startPoint, spawnRotation);
 
@@ -86,13 +88,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    
     public void takeDMG(GameObject obj)
     {
-        Debug.Log("test1");
         if(!hasCollide)
         {
-            Debug.Log("test2");
-
             health--;
             hasCollide = true;
             Destroy(obj);
@@ -100,19 +100,16 @@ public class GameManager : MonoBehaviour
 
         if(health > 0)
         {
-            Debug.Log("test3");
-
             StartCoroutine(spawnPlayer());
             if (weaponLevel > 1) weaponLevel--;
             if (weaponSpeedLevel > 1) weaponSpeedLevel--;
         }
         else
         {
-            Debug.Log("test4");
-
+            Destroy(obj);
             ShowGameOverPanel();
         }
-        Debug.Log("test5");
+        Debug.Log(health);
 
         updateHealthBar();
     }

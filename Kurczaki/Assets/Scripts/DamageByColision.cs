@@ -23,37 +23,9 @@ public class DamageByColision : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.layer == 3)
+        if(collision.gameObject.layer == 3 && gameObject.layer != 3)
         {
-            switch(collision.gameObject.tag)
-            {
-                case "Speed":
-                    {
-                        if(GameManager.weaponSpeedLevel < GameManager.maxWeaponSpeedLevel) GameManager.weaponSpeedLevel++;
-                        break;
-                    }
-                case "Level":
-                    {
-                        if (GameManager.weaponLevel < GameManager.maxWeaponLevel) GameManager.weaponLevel++;
-                        break;
-                    }
-                case "HP":
-                    {
-                        if (GameManager.health < GameManager.maxHealth) gm.addHealth();
-                        break;
-                    }
-                case "Points":
-                    {
-                        gm.addPoints(50);
-                        break;
-                    }
-                case "Rocket":
-                    {
-                        //if (GameManager.health < GameManager.maxHealth) gm.addHealth();
-                        break;
-                    }
-            }
-            Destroy(collision.gameObject);
+
         }
         else if(gameObject.layer == 6)
         {

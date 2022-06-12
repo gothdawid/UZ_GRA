@@ -111,6 +111,9 @@ public class SettingsMenu : MonoBehaviour
     }
 
     bool vsync = true;
+
+    
+
     public void SetRes(int index)
     {
         string[] _tmp = resulutionDropdown.options[index].text.Split(' ');
@@ -127,6 +130,12 @@ public class SettingsMenu : MonoBehaviour
         //Debug.LogError(width.ToString() + "x" + height.ToString() + "@" + refreshRate.ToString());
         //Debug.LogError(Screen.width + "x" + Screen.height + "@" + refreshRate);
     }
+
+    // funkcja pobieraj¹ca dostêpne odœwie¿enia ekranu 
+    // i zapisuj¹ca je do tablicy 
+    
+    
+
 
     public void SetVSync(bool a)
     {
@@ -147,6 +156,8 @@ public class SettingsMenu : MonoBehaviour
     {
         Screen.fullScreen = a;
     }
+
+    
 
     public void ExitSettings()
     {

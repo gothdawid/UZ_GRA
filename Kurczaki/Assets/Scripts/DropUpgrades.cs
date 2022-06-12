@@ -28,6 +28,12 @@ public class DropUpgrades : MonoBehaviour
             Quaternion spawnRotation = Quaternion.identity;
             Instantiate(PointsCoin, gameObject.transform.position, spawnRotation);
         }
+    }
+
+
+    void OnDestroy()
+    {
+        int chance = Random.Range(0, 99);
 
         int type = Random.Range(1, 5);
         switch (type)
@@ -61,10 +67,5 @@ public class DropUpgrades : MonoBehaviour
                 }
                 break;
         }
-    }
-
-    void FixedUpdate()
-    {
-        
     }
 }

@@ -13,8 +13,6 @@ public class AnimateBG : MonoBehaviour
 
     private void FixedUpdate()
     {
-
-
         Vector2 pos = this.transform.localPosition;
 
         float x_max_pos = 500 * animateWidth;
