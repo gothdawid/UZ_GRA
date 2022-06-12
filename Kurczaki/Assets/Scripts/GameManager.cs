@@ -66,9 +66,9 @@ public class GameManager : MonoBehaviour
         {
             int chance = Random.Range(0, 99);
 
-            if (chance < 12 && points > 1500) enemy = enemies[3];
-            else if (chance < 30 && points > 1000) enemy = enemies[2];
-            else if(chance < 50 && points > 500) enemy = enemies[1];
+            if (chance < 12 && points > 1100) enemy = enemies[3];
+            else if (chance < 30 && points > 600) enemy = enemies[2];
+            else if(chance < 50 && points > 300) enemy = enemies[1];
             else enemy = enemies[0];
 
 
