@@ -135,6 +135,7 @@ public class SettingsMenu : MonoBehaviour
     // i zapisuj¹ca je do tablicy 
     
     
+    
 
 
     public void SetVSync(bool a)
