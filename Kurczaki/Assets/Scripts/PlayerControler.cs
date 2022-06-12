@@ -68,11 +68,11 @@ public class PlayerControler : MonoBehaviour
                         var newBullet = Instantiate(bullet) as GameObject;
                         var newBullet2 = Instantiate(bullet) as GameObject;
                         var newBullet3 = Instantiate(bullet) as GameObject;
-                        var newBullet4 = Instantiate(bullet) as GameObject;
-                        newBullet.transform.position = shootPointsList[1].position;
+                        newBullet.transform.position = shootPointsList[0].position;
                         newBullet2.transform.position = shootPointsList[2].position;
-                        newBullet3.transform.position = shootPointsList[3].position;
-                        newBullet4.transform.position = shootPointsList[4].position;
+                        newBullet2.transform.rotation = shootPointsList[2].rotation;
+                        newBullet3.transform.position = shootPointsList[1].position;
+                        newBullet3.transform.rotation = shootPointsList[1].rotation;
                         break;
                     }
                 case 5:
@@ -81,11 +81,31 @@ public class PlayerControler : MonoBehaviour
                         var newBullet2 = Instantiate(bullet) as GameObject;
                         var newBullet3 = Instantiate(bullet) as GameObject;
                         var newBullet4 = Instantiate(bullet) as GameObject;
-                        var newBullet5 = Instantiate(bullet) as GameObject;
                         newBullet.transform.position = shootPointsList[1].position;
                         newBullet2.transform.position = shootPointsList[2].position;
                         newBullet3.transform.position = shootPointsList[3].position;
+                        newBullet3.transform.rotation = shootPointsList[3].rotation;
                         newBullet4.transform.position = shootPointsList[4].position;
+                        newBullet4.transform.rotation = shootPointsList[4].rotation;
+                        break;
+                    }
+                case 6:
+                    {
+                        var newBullet = Instantiate(bullet) as GameObject;
+                        var newBullet2 = Instantiate(bullet) as GameObject;
+                        var newBullet3 = Instantiate(bullet) as GameObject;
+                        var newBullet4 = Instantiate(bullet) as GameObject;
+                        var newBullet5 = Instantiate(bullet) as GameObject;
+                        newBullet.transform.position = shootPointsList[1].position;
+
+                        newBullet2.transform.position = shootPointsList[2].position;
+
+                        newBullet3.transform.position = shootPointsList[3].position;
+                        newBullet3.transform.rotation = shootPointsList[3].rotation;
+
+                        newBullet4.transform.position = shootPointsList[4].position;
+                        newBullet4.transform.rotation = shootPointsList[4].rotation;
+
                         newBullet5.transform.position = shootPointsList[0].position;
                         break;
                     }
@@ -97,9 +117,17 @@ public class PlayerControler : MonoBehaviour
                         var newBullet4 = Instantiate(bullet) as GameObject;
                         var newBullet5 = Instantiate(bullet) as GameObject;
                         newBullet.transform.position = shootPointsList[1].position;
+                        newBullet.transform.rotation = Quaternion.Euler(0, 0, shootPointsList[1].rotation.z + 2);
+
                         newBullet2.transform.position = shootPointsList[2].position;
+                        newBullet2.transform.rotation = Quaternion.Euler(0, 0, shootPointsList[1].rotation.z - 2);
+
                         newBullet3.transform.position = shootPointsList[3].position;
+                        newBullet3.transform.rotation = shootPointsList[3].rotation;
+
                         newBullet4.transform.position = shootPointsList[4].position;
+                        newBullet4.transform.rotation = shootPointsList[4].rotation;
+
                         newBullet5.transform.position = shootPointsList[0].position;
                         break;
                     }
