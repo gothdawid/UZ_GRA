@@ -37,7 +37,10 @@ public class SettingsMenu : MonoBehaviour
         {
 
             string option = all_resolutions[i].width + "x" + all_resolutions[i].height + " @ " + all_resolutions[i].refreshRate + "Hz";
-            if (all_resolutions[i].refreshRate == 30 || all_resolutions[i].refreshRate == 60 || all_resolutions[i].refreshRate == 75 || all_resolutions[i].refreshRate >= 120)
+            if (Mathf.Ceil(all_resolutions[i].refreshRate) == 30 
+            || Mathf.Ceil(all_resolutions[i].refreshRate) == 60 
+            || Mathf.Ceil(all_resolutions[i].refreshRate) == 75 
+            || all_resolutions[i].refreshRate >= 120)
             {
                 options.Add(option);
                 j++;
@@ -131,8 +134,8 @@ public class SettingsMenu : MonoBehaviour
         //Debug.LogError(Screen.width + "x" + Screen.height + "@" + refreshRate);
     }
 
-    // funkcja pobieraj¹ca dostêpne odœwie¿enia ekranu 
-    // i zapisuj¹ca je do tablicy 
+    // funkcja pobierajï¿½ca dostï¿½pne odï¿½wieï¿½enia ekranu 
+    // i zapisujï¿½ca je do tablicy 
     
     
     
