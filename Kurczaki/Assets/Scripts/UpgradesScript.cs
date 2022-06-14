@@ -45,7 +45,7 @@ public class UpgradesScript : MonoBehaviour
                     }
                 case "Rocket":
                     {
-                        //if (GameManager.health < GameManager.maxHealth) gm.addHealth();
+                        gm.addRocket();
                         break;
                     }
             }

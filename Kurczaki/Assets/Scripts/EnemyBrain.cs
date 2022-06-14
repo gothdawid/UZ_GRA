@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class EnemyBrain : MonoBehaviour
 {
-    public GameObject bullet;
+    public GameObject bullet, rocket;
     public Transform[] shootPointsList;
+    public Transform[] RocketPointsList;
+
     public Rigidbody2D rb;
 
 
     public float fireDelayMin = 1f, fireDelayMax = 3f, kamikadzeDelayMin = 10f, kamikadzeDelayMax = 15f;
     float cooldownTimer = 1.5f;
     bool newAtackAloved = true;
-
+    public float rocketMinTimeToShoot = 2f, rocketMaxTimeToShoot = 4f;
 
     private void Start()
     {
@@ -130,10 +132,14 @@ public class EnemyBrain : MonoBehaviour
             yield return new WaitForSeconds(3f);
             if (newAtackAloved)
             {
-                int random = Random.Range(0, 2);
+                int random = Random.Range(0, 3);
                 if (random == 0)
                 {
                     StartCoroutine(EnemyMove());
+                }
+                else if(random == 1)
+                {
+                    StartCoroutine(RocketLaunch());
                 }
                 else
                 {
@@ -143,4 +149,20 @@ public class EnemyBrain : MonoBehaviour
             }
         }
     }
+    
+
+    IEnumerator RocketLaunch()
+    {
+        float timeToAtack = rocketMinTimeToShoot * GameManager.mnoznikPoziomu;
+        float timeToAtack2 = rocketMaxTimeToShoot * GameManager.mnoznikPoziomu;
+        yield return new WaitForSeconds(Random.Range(timeToAtack, timeToAtack2));
+
+        foreach (Transform rocketPoint in RocketPointsList)
+        {
+            yield return new WaitForSeconds(1f);
+            var newRocket = Instantiate(rocket) as GameObject;
+            newRocket.transform.position = rocketPoint.position;
+        }
+    }
+
 }

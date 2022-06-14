@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public static int points = 0;
-    public static int health = 4, weaponLevel = 1, weaponSpeedLevel = 1;
+    public static int health = 3, weaponLevel = 1, weaponSpeedLevel = 1, rocketCount = 2;
     public static int actualEnemycount = 0;
     public GameObject player;
     public GameObject[] enemies;
@@ -16,12 +16,13 @@ public class GameManager : MonoBehaviour
     public float spawnWait, startWait,playerSpawnWait;
     public Text pointsText;
     public Image Heart1, Heart2, Heart3;
+    public Image Rocket1, Rocket2;
     public GameObject gameOverPanel, pausePanel;
 
     public static bool paused = false;
     private bool hasCollide = false;
 
-    public static int maxHealth = 5, maxWeaponLevel = 7, maxWeaponSpeedLevel = 7;
+    public static int maxHealth = 3, maxWeaponLevel = 7, maxWeaponSpeedLevel = 7;
     
     public AudioMixer audiomixer;
 
@@ -118,9 +119,34 @@ public class GameManager : MonoBehaviour
 
     public void addHealth()
     {
-        health++;
-        updateHealthBar();
+        if (health < maxHealth)
+        {
+            health++;
+            updateHealthBar();
+        }
     }
+
+    public void addRocket()
+    {
+        if (rocketCount < 2)
+        {
+            rocketCount++;
+            updateRocketBar();
+        }
+    }
+
+    public void updateRocketBar()
+    {
+        if (rocketCount == 2) Rocket1.enabled = true;
+        if (rocketCount == 1)
+        {
+            Rocket2.enabled = true;
+            Rocket1.enabled = false;
+        }
+
+        if (rocketCount == 0) Rocket2.enabled = false;
+    }
+    
 
     public void updateHealthBar()
     {

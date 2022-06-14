@@ -9,12 +9,13 @@ public class PlayerControler : MonoBehaviour
 {
     public float fireDelay = 0.5f;
     public float fire2Delay = 25;
-    public GameObject bullet;
+    public GameObject bullet, rocket;
     public Transform[] shootPointsList;
     float cooldownTimer = 0;
     float cooldownTimer2 = 0;
     GameObject gObj;
     Image WeaponImage;
+    GameManager gm;
 
 
     void Start()
@@ -22,6 +23,7 @@ public class PlayerControler : MonoBehaviour
         gObj = GameObject.Find("WeaponImage");
         WeaponImage = (Image)gObj.GetComponent(typeof(Image));
 
+        gm = (GameManager)GameObject.Find("GameManager").GetComponent(typeof(GameManager));
 
         Cursor.lockState = CursorLockMode.Confined; 
         Cursor.visible = false;
@@ -179,7 +181,14 @@ public class PlayerControler : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Mouse1) && cooldownTimer2 <= 0)
         {
-            cooldownTimer2 = fire2Delay;
+            // spawn rocket
+            if (GameManager.rocketCount > 0)
+            {
+                var newRocket = Instantiate(rocket) as GameObject;
+                GameManager.rocketCount--;
+                gm.updateRocketBar();
+                cooldownTimer2 = fire2Delay;
+            }
         }
 
         color = (float)Math.Ceiling(100f - (cooldownTimer / fireDelay * 200f));
