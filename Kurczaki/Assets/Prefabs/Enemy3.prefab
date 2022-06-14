@@ -284,8 +284,8 @@ MonoBehaviour:
   rb: {fileID: 7284190815334001081}
   fireDelayMin: 5
   fireDelayMax: 7
-  kamikadzeDelayMin: 10
-  kamikadzeDelayMax: 20
+  kamikadzeDelayMin: 8
+  kamikadzeDelayMax: 9
   rocketMinTimeToShoot: 2
   rocketMaxTimeToShoot: 4
 --- !u!114 &-6388859954240292147

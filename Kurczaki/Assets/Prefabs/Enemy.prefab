@@ -32,6 +32,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1546405890845401863}
   - {fileID: 5232975631004449426}
@@ -136,13 +137,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 1338389238145113147, guid: fc55d5f64c3f236449ba365549a60ad5, type: 3}
+  rocket: {fileID: 0}
   shootPointsList:
   - {fileID: 1546405890845401863}
+  RocketPointsList: []
   rb: {fileID: 6076049795682264110}
   fireDelayMin: 4
   fireDelayMax: 7
-  kamikadzeDelayMin: 12
-  kamikadzeDelayMax: 14
+  kamikadzeDelayMin: 6
+  kamikadzeDelayMax: 8
+  rocketMinTimeToShoot: 2
+  rocketMaxTimeToShoot: 4
 --- !u!114 &4989737230219583999
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -191,6 +196,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -40.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4399280365436897444}
   m_RootOrder: 0
