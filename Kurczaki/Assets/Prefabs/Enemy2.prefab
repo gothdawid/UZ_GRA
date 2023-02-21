@@ -198,9 +198,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HPChance: 2
   HPUpgrade: {fileID: 8679011056093362820, guid: ce3f700b1e170be4782912486c0fc708, type: 3}
-  WeaponChance: 6
+  WeaponChance: 7
   WeaponUpgrade: {fileID: 7125634486413461119, guid: e4ec825220b64a842bbfbc1fe716e079, type: 3}
-  SpeedChance: 6
+  SpeedChance: 7
   SpeedUpgrade: {fileID: 5383519888525859475, guid: 428e98cc410eb0143998b66bd9ab3a89, type: 3}
   RocketChance: 2
   RocketCoin: {fileID: 2693307933441998901, guid: 2f7d721f0695822499145e0f9bed9c41, type: 3}

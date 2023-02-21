@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     public GameObject player;
     public GameObject[] enemies;
     public Vector3 spawmValues;
-    public float spawnWait, startWait,playerSpawnWait;
+    public float spawnWait, startWait, playerSpawnWait;
     public Text pointsText;
     public Image Heart1, Heart2, Heart3;
     public Image Rocket1, Rocket2;
@@ -23,10 +23,13 @@ public class GameManager : MonoBehaviour
     private bool hasCollide = false;
 
     public static int maxHealth = 3, maxWeaponLevel = 7, maxWeaponSpeedLevel = 7;
-    
+
     public AudioMixer audiomixer;
 
     public static float mnoznikPoziomu = 1;
+
+    public InputField inputfield;
+
 
     void Start()
     {
@@ -53,7 +56,7 @@ public class GameManager : MonoBehaviour
 
         yield return new WaitForSeconds(playerSpawnWait);
         hasCollide = false;
-        Vector3 spawnPoint = new Vector3(0f,-250f,-10f);
+        Vector3 spawnPoint = new Vector3(0f, -250f, -10f);
         Quaternion spawnRotation = Quaternion.identity;
         Instantiate(player, spawnPoint, spawnRotation);
     }
@@ -67,17 +70,17 @@ public class GameManager : MonoBehaviour
         {
             int chance = Random.Range(0, 99);
 
-            if (chance < 12 && points > 1100) enemy = enemies[3];
-            else if (chance < 30 && points > 600) enemy = enemies[2];
-            else if(chance < 50 && points > 300) enemy = enemies[1];
+            if (chance < 12 && points > 500) enemy = enemies[3];
+            else if (chance < 30 && points > 350) enemy = enemies[2];
+            else if (chance < 50 && points > 250) enemy = enemies[1];
             else enemy = enemies[0];
 
 
 
-            if (actualEnemycount < Mathf.Ceil(GameManager.points / 300) + 3)
+            if (actualEnemycount < Mathf.Ceil(GameManager.points / 300) + 4)
             {
                 Vector3 startPoint = new Vector3(Random.Range(-spawmValues.x, spawmValues.x), Random.Range(200, 320), spawmValues.z);
-                // sprawdŸ czy pozycja startowa nie jest zajêta przez inny obiekt
+                // sprawdï¿½ czy pozycja startowa nie jest zajï¿½ta przez inny obiekt
                 while (Physics2D.OverlapCircle(startPoint, 30f) != null)
                 {
                     startPoint = new Vector3(Random.Range(-spawmValues.x, spawmValues.x), Random.Range(200, 320), spawmValues.z);
@@ -87,21 +90,21 @@ public class GameManager : MonoBehaviour
 
                 actualEnemycount++;
             }
-            yield return new WaitForSeconds(spawnWait); 
+            yield return new WaitForSeconds(spawnWait);
         }
     }
 
-    
+
     public void takeDMG(GameObject obj)
     {
-        if(!hasCollide)
+        if (!hasCollide)
         {
             health--;
             hasCollide = true;
             Destroy(obj);
         }
 
-        if(health > 0)
+        if (health > 0)
         {
             StartCoroutine(spawnPlayer());
             if (weaponLevel > 1) weaponLevel--;
@@ -146,18 +149,18 @@ public class GameManager : MonoBehaviour
 
         if (rocketCount == 0) Rocket2.enabled = false;
     }
-    
+
 
     public void updateHealthBar()
     {
         Debug.Log(health);
-        if(health >= 3) Heart3.enabled = true;
+        if (health >= 3) Heart3.enabled = true;
         if (health >= 2) Heart2.enabled = true;
         if (health >= 1) Heart1.enabled = true;
 
-        if(health < 3) Heart3.enabled = false;
-        if(health < 2) Heart2.enabled = false;
-        if(health < 1) Heart1.enabled = false;
+        if (health < 3) Heart3.enabled = false;
+        if (health < 2) Heart2.enabled = false;
+        if (health < 1) Heart1.enabled = false;
 
     }
 
@@ -167,8 +170,25 @@ public class GameManager : MonoBehaviour
         pointsText.text = "Punkty: " + points.ToString();
     }
 
+
+    public void SaveScore()
+    {
+        string nick = inputfield.text;
+        if (nick.Length > 0)
+        {
+            PlayerPrefs.SetString("Name" + 10.ToString(), nick);
+            PlayerPrefs.SetInt("Score" + 10.ToString(), points);
+        }
+        else
+        {
+            PlayerPrefs.SetString("Name" + 10.ToString(), "Gracz");
+            PlayerPrefs.SetInt("Score" + 10.ToString(), points);
+        }
+    }
+
     public void ReturnToMenu()
     {
+        SaveScore();
         Time.timeScale = 1;
         paused = false;
         Cursor.lockState = CursorLockMode.None;
@@ -194,7 +214,7 @@ public class GameManager : MonoBehaviour
             Cursor.lockState = CursorLockMode.Confined;
             Cursor.visible = false;
         }
-        else 
+        else
         {
             pausePanel.SetActive(true);
             Time.timeScale = 0.02f;

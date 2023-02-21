@@ -7,6 +7,7 @@ public class MenuScript : MonoBehaviour
 {
     public GameObject MainMenu;
     public GameObject settingsDialog;
+    public GameObject highResultsMenu;
     public AudioMixer audiomixer;
 
     private void Start()
@@ -41,5 +42,10 @@ public class MenuScript : MonoBehaviour
     public void openSettings()
     {
         Instantiate(settingsDialog);
+    }
+
+    public void opentHighScoresTable()
+    {
+        Instantiate(highResultsMenu);
     }
 }
